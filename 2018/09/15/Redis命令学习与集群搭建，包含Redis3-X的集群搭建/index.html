@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>小尚博客天地</title>
+  <title>Redis命令学习与集群搭建，包含Redis3.X的集群搭建 | 小尚博客天地</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Redis命令学习与集群搭建，包含Redis3.X的集群搭建一、Redis的安装解压安装包[root@node01 sxt]# tar xf redis-2.8.18.tar.gz    安装编译器[root@node01 sxt]# yum install gcc tcl -y  执行编译[root@node01 sxt]# cd redis-2.8.18/[root@node01 redis-">
+  <meta name="description" content="一、Redis的安装解压安装包[root@node01 sxt]# tar xf redis-2.8.18.tar.gz    安装编译器[root@node01 sxt]# yum install gcc tcl -y  执行编译[root@node01 sxt]# cd redis-2.8.18/[root@node01 redis-2.8.18]# make  安装[root@node01">
 <meta property="og:type" content="article">
-<meta property="og:title" content="小尚博客天地">
+<meta property="og:title" content="Redis命令学习与集群搭建，包含Redis3.X的集群搭建">
 <meta property="og:url" content="http://yoursite.com/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/index.html">
 <meta property="og:site_name" content="小尚博客天地">
-<meta property="og:description" content="Redis命令学习与集群搭建，包含Redis3.X的集群搭建一、Redis的安装解压安装包[root@node01 sxt]# tar xf redis-2.8.18.tar.gz    安装编译器[root@node01 sxt]# yum install gcc tcl -y  执行编译[root@node01 sxt]# cd redis-2.8.18/[root@node01 redis-">
+<meta property="og:description" content="一、Redis的安装解压安装包[root@node01 sxt]# tar xf redis-2.8.18.tar.gz    安装编译器[root@node01 sxt]# yum install gcc tcl -y  执行编译[root@node01 sxt]# cd redis-2.8.18/[root@node01 redis-2.8.18]# make  安装[root@node01">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-09-15T09:52:05.841Z">
+<meta property="og:updated_time" content="2018-09-15T09:54:47.630Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="小尚博客天地">
-<meta name="twitter:description" content="Redis命令学习与集群搭建，包含Redis3.X的集群搭建一、Redis的安装解压安装包[root@node01 sxt]# tar xf redis-2.8.18.tar.gz    安装编译器[root@node01 sxt]# yum install gcc tcl -y  执行编译[root@node01 sxt]# cd redis-2.8.18/[root@node01 redis-">
+<meta name="twitter:title" content="Redis命令学习与集群搭建，包含Redis3.X的集群搭建">
+<meta name="twitter:description" content="一、Redis的安装解压安装包[root@node01 sxt]# tar xf redis-2.8.18.tar.gz    安装编译器[root@node01 sxt]# yum install gcc tcl -y  执行编译[root@node01 sxt]# cd redis-2.8.18/[root@node01 redis-2.8.18]# make  安装[root@node01">
   
     <link rel="alternative" href="/atom.xml" title="小尚博客天地" type="application/atom+xml">
   
@@ -157,9 +157,24 @@
             <article id="post-Redis命令学习与集群搭建，包含Redis3-X的集群搭建" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Redis命令学习与集群搭建，包含Redis3.X的集群搭建
+    </h1>
+  
+
+        
+        <a href="/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/" class="archive-article-date">
+  	<time datetime="2018-09-15T09:48:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-15</time>
+</a>
+        
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Redis命令学习与集群搭建，包含Redis3-X的集群搭建"><a href="#Redis命令学习与集群搭建，包含Redis3-X的集群搭建" class="headerlink" title="Redis命令学习与集群搭建，包含Redis3.X的集群搭建"></a>Redis命令学习与集群搭建，包含Redis3.X的集群搭建</h1><h2 id="一、Redis的安装"><a href="#一、Redis的安装" class="headerlink" title="一、Redis的安装"></a>一、Redis的安装</h2><h3 id="解压安装包"><a href="#解压安装包" class="headerlink" title="解压安装包"></a>解压安装包</h3><table><tr><td bgcolor="#FF4500">[root@node01 sxt]# tar xf redis-2.8.18.tar.gz</td></tr></table>  
+        <h2 id="一、Redis的安装"><a href="#一、Redis的安装" class="headerlink" title="一、Redis的安装"></a>一、Redis的安装</h2><h3 id="解压安装包"><a href="#解压安装包" class="headerlink" title="解压安装包"></a>解压安装包</h3><table><tr><td bgcolor="#FF4500">[root@node01 sxt]# tar xf redis-2.8.18.tar.gz</td></tr></table>  
 
 <h3 id="安装编译器"><a href="#安装编译器" class="headerlink" title="安装编译器"></a>安装编译器</h3><p>[root@node01 sxt]# yum install gcc tcl -y </p>
 <h3 id="执行编译"><a href="#执行编译" class="headerlink" title="执行编译"></a>执行编译</h3><p>[root@node01 sxt]# cd redis-2.8.18/<br>[root@node01 redis-2.8.18]# make </p>

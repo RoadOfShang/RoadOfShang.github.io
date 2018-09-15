@@ -6,15 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2018/9 | 小尚博客天地</title>
+  <title>小尚博客天地</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+  <meta name="description" content="Redis命令学习与集群搭建，包含Redis3.X的集群搭建一、Redis的安装解压安装包[root@node01 sxt]# tar xf redis-2.8.18.tar.gz    安装编译器[root@node01 sxt]# yum install gcc tcl -y  执行编译[root@node01 sxt]# cd redis-2.8.18/[root@node01 redis-">
+<meta property="og:type" content="article">
 <meta property="og:title" content="小尚博客天地">
-<meta property="og:url" content="http://yoursite.com/archives/2018/09/index.html">
+<meta property="og:url" content="http://yoursite.com/2018/09/15/Redis命令学习与集群搭建，包含Redis3.X的集群搭建/index.html">
 <meta property="og:site_name" content="小尚博客天地">
+<meta property="og:description" content="Redis命令学习与集群搭建，包含Redis3.X的集群搭建一、Redis的安装解压安装包[root@node01 sxt]# tar xf redis-2.8.18.tar.gz    安装编译器[root@node01 sxt]# yum install gcc tcl -y  执行编译[root@node01 sxt]# cd redis-2.8.18/[root@node01 redis-">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-09-15T09:15:57.240Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="小尚博客天地">
+<meta name="twitter:description" content="Redis命令学习与集群搭建，包含Redis3.X的集群搭建一、Redis的安装解压安装包[root@node01 sxt]# tar xf redis-2.8.18.tar.gz    安装编译器[root@node01 sxt]# yum install gcc tcl -y  执行编译[root@node01 sxt]# cd redis-2.8.18/[root@node01 redis-">
   
     <link rel="alternative" href="/atom.xml" title="小尚博客天地" type="application/atom+xml">
   
@@ -150,43 +154,147 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Redis命令学习与集群搭建，包含Redis3.X的集群搭建" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
+    <div class="article-entry" itemprop="articleBody">
       
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/09/15/Redis命令学习与集群搭建，包含Redis3.X的集群搭建/" class="archive-article-date">
-  	<time datetime="2018-09-15T09:19:32.166Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-15</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+        <h1 id="Redis命令学习与集群搭建，包含Redis3-X的集群搭建"><a href="#Redis命令学习与集群搭建，包含Redis3-X的集群搭建" class="headerlink" title="Redis命令学习与集群搭建，包含Redis3.X的集群搭建"></a>Redis命令学习与集群搭建，包含Redis3.X的集群搭建</h1><h2 id="一、Redis的安装"><a href="#一、Redis的安装" class="headerlink" title="一、Redis的安装"></a>一、Redis的安装</h2><h3 id="解压安装包"><a href="#解压安装包" class="headerlink" title="解压安装包"></a>解压安装包</h3><table><tr><td bgcolor="#FF4500">[root@node01 sxt]# tar xf redis-2.8.18.tar.gz</td></tr></table>  
 
+<h3 id="安装编译器"><a href="#安装编译器" class="headerlink" title="安装编译器"></a>安装编译器</h3><p>[root@node01 sxt]# yum install gcc tcl -y </p>
+<h3 id="执行编译"><a href="#执行编译" class="headerlink" title="执行编译"></a>执行编译</h3><p>[root@node01 sxt]# cd redis-2.8.18/<br>[root@node01 redis-2.8.18]# make </p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>[root@node01 redis-2.8.18]# make PREFIX=/opt/sxt/redis install   </p>
+<h3 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h3><p>[root@node01 redis]# vi + /etc/profile<br>export REDIS_HOME=/opt/sxt/redis export PATH=$PATH:$REDIS_HOME/bin<br>[root@node01 redis]# . /etc/profile </p>
+<h3 id="进入编译包的-util-目录下，进一步完善安装配置"><a href="#进入编译包的-util-目录下，进一步完善安装配置" class="headerlink" title="进入编译包的 util 目录下，进一步完善安装配置"></a>进入编译包的 util 目录下，进一步完善安装配置</h3><p> [root@node01 redis]# cd /opt/sxt/redis-2.8.18/utils<br>[root@node01 utils]# ./install_server.sh<br>Welcome to the redis service installer<br>This script will help you easily set up a running redis server </p>
+<ul>
+<li>如果不用默认配置，需要手动输入端口号，我们这里就用默认端口，按 Enter<br>Please select the redis port for this instance: [6379]<br>Selecting default: 6379 </li>
+<li>选择默认的配置文件的名称，按 Enter，使用别的路径和名称需要手动指定<br>Please select the redis config file name [/etc/redis/6379.conf]<br>Selected default - /etc/redis/6379.conf   </li>
+<li>日志存放位置，处理同上<br>Please select the redis log file name [/var/log/redis_6379.log]<br>Selected default - /var/log/redis_6379.log   </li>
+<li>持久化数据目录，处理同上<br>Please select the data directory for this instance [/var/lib/redis/6379]<br>Selected default - /var/lib/redis/6379 </li>
+<li>指定 redis 的命令执行路径，因为已经在环境变量中配置过，这里不再做处理<br>Please select the redis executable path [/opt/sxt/redis/bin/redis-server] Selected config:<br>Port           : 6379<br>Config file    : /etc/redis/6379.conf<br>Log file       : /var/log/redis_6379.log<br>Data dir       : /var/lib/redis/6379<br>Executable     : /opt/sxt/redis/bin/redis-server<br>Cli Executable : /opt/sxt/redis/bin/redis-cli<br>Is this ok? Then press ENTER to go on or Ctrl-C to abort. # Enter<br>Copied /tmp/6379.conf =&gt; /etc/init.d/redis_6379 Installing service…<br>Successfully added to chkconfig!<br>Successfully added to runlevels 345!<br>Starting Redis server…<br>Installation successful!   </li>
+<li>可以多次执行 install_server.sh 脚本安装不同端口下的 redis 服务   <h3 id="进入-redis-客户端"><a href="#进入-redis-客户端" class="headerlink" title="进入 redis 客户端"></a>进入 redis 客户端</h3></li>
+<li>在安装目录下执行 redis-cli，不是编译包下<br>[root@node01 bin]# redis-cli<h2 id="二、Redis-数据模型"><a href="#二、Redis-数据模型" class="headerlink" title="二、Redis 数据模型"></a>二、Redis 数据模型</h2></li>
+</ul>
+<p>&ensp;&ensp;&ensp;&ensp;Redis 是一个开源的(BSD 协议)，使用 ANSI C 编写，基于内存的且支持持久化，高性能的 Key-Value 的 NoSQL数据库。支持数据结构类型丰富，有如字符串(strings)，散列(hashes)，列表(lists)，集合(sets)，有序集合(sorted sets)与范围查询,bitmaps， hyperloglogs 和地理空间(geospatial)索引半径查询。具有丰富的支持主流语言的客户端，C、C++、Python、Erlang、R、C#、Java、PHP、Objective-C、Perl、Ruby、Scala、Go、JavaScript 等，主要用于：缓存(StackOverFlow)、数据库(微博)、消息中间件(微博)。</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/09/15/Redis命令学习与集群搭建，包含Redis3.X的集群搭建/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-  
-    </div></section>
+
   
 
-    
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
+  
+
+  
+
+  
+
+  
 
 
           </div>
@@ -209,8 +317,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

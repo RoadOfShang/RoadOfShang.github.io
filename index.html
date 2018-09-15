@@ -152,35 +152,28 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Redis命令学习与集群搭建，包含Redis3.X的集群搭建" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/12/hello-world/">Hello World</a>
-    </h1>
-  
-
-        
-        <a href="/2018/09/12/hello-world/" class="archive-article-date">
-  	<time datetime="2018-09-12T10:39:36.734Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-12</time>
-</a>
-        
-      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+        <h1 id="Redis命令学习与集群搭建，包含Redis3-X的集群搭建"><a href="#Redis命令学习与集群搭建，包含Redis3-X的集群搭建" class="headerlink" title="Redis命令学习与集群搭建，包含Redis3.X的集群搭建"></a>Redis命令学习与集群搭建，包含Redis3.X的集群搭建</h1><h2 id="一、Redis的安装"><a href="#一、Redis的安装" class="headerlink" title="一、Redis的安装"></a>一、Redis的安装</h2><h3 id="解压安装包"><a href="#解压安装包" class="headerlink" title="解压安装包"></a>解压安装包</h3><table><tr><td bgcolor="#FF4500">[root@node01 sxt]# tar xf redis-2.8.18.tar.gz</td></tr></table>  
+
+<h3 id="安装编译器"><a href="#安装编译器" class="headerlink" title="安装编译器"></a>安装编译器</h3><p>[root@node01 sxt]# yum install gcc tcl -y </p>
+<h3 id="执行编译"><a href="#执行编译" class="headerlink" title="执行编译"></a>执行编译</h3><p>[root@node01 sxt]# cd redis-2.8.18/<br>[root@node01 redis-2.8.18]# make </p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>[root@node01 redis-2.8.18]# make PREFIX=/opt/sxt/redis install   </p>
+<h3 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h3><p>[root@node01 redis]# vi + /etc/profile<br>export REDIS_HOME=/opt/sxt/redis export PATH=$PATH:$REDIS_HOME/bin<br>[root@node01 redis]# . /etc/profile </p>
+<h3 id="进入编译包的-util-目录下，进一步完善安装配置"><a href="#进入编译包的-util-目录下，进一步完善安装配置" class="headerlink" title="进入编译包的 util 目录下，进一步完善安装配置"></a>进入编译包的 util 目录下，进一步完善安装配置</h3><p> [root@node01 redis]# cd /opt/sxt/redis-2.8.18/utils<br>[root@node01 utils]# ./install_server.sh<br>Welcome to the redis service installer<br>This script will help you easily set up a running redis server </p>
+<ul>
+<li>如果不用默认配置，需要手动输入端口号，我们这里就用默认端口，按 Enter<br>Please select the redis port for this instance: [6379]<br>Selecting default: 6379 </li>
+<li>选择默认的配置文件的名称，按 Enter，使用别的路径和名称需要手动指定<br>Please select the redis config file name [/etc/redis/6379.conf]<br>Selected default - /etc/redis/6379.conf   </li>
+<li>日志存放位置，处理同上<br>Please select the redis log file name [/var/log/redis_6379.log]<br>Selected default - /var/log/redis_6379.log   </li>
+<li>持久化数据目录，处理同上<br>Please select the data directory for this instance [/var/lib/redis/6379]<br>Selected default - /var/lib/redis/6379 </li>
+<li>指定 redis 的命令执行路径，因为已经在环境变量中配置过，这里不再做处理<br>Please select the redis executable path [/opt/sxt/redis/bin/redis-server] Selected config:<br>Port           : 6379<br>Config file    : /etc/redis/6379.conf<br>Log file       : /var/log/redis_6379.log<br>Data dir       : /var/lib/redis/6379<br>Executable     : /opt/sxt/redis/bin/redis-server<br>Cli Executable : /opt/sxt/redis/bin/redis-cli<br>Is this ok? Then press ENTER to go on or Ctrl-C to abort. # Enter<br>Copied /tmp/6379.conf =&gt; /etc/init.d/redis_6379 Installing service…<br>Successfully added to chkconfig!<br>Successfully added to runlevels 345!<br>Starting Redis server…<br>Installation successful!   </li>
+<li>可以多次执行 install_server.sh 脚本安装不同端口下的 redis 服务   <h3 id="进入-redis-客户端"><a href="#进入-redis-客户端" class="headerlink" title="进入 redis 客户端"></a>进入 redis 客户端</h3></li>
+<li>在安装目录下执行 redis-cli，不是编译包下<br>[root@node01 bin]# redis-cli<h2 id="二、Redis-数据模型"><a href="#二、Redis-数据模型" class="headerlink" title="二、Redis 数据模型"></a>二、Redis 数据模型</h2></li>
+</ul>
+<p>&ensp;&ensp;&ensp;&ensp;Redis 是一个开源的(BSD 协议)，使用 ANSI C 编写，基于内存的且支持持久化，高性能的 Key-Value 的 NoSQL数据库。支持数据结构类型丰富，有如字符串(strings)，散列(hashes)，列表(lists)，集合(sets)，有序集合(sorted sets)与范围查询,bitmaps， hyperloglogs 和地理空间(geospatial)索引半径查询。具有丰富的支持主流语言的客户端，C、C++、Python、Erlang、R、C#、Java、PHP、Objective-C、Perl、Ruby、Scala、Go、JavaScript 等，主要用于：缓存(StackOverFlow)、数据库(微博)、消息中间件(微博)。</p>
 
       
 
@@ -193,7 +186,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/09/12/hello-world/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/09/15/Redis命令学习与集群搭建，包含Redis3.X的集群搭建/">展开全文 >></a>
         </p>
       
 

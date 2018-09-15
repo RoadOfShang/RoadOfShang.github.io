@@ -8,17 +8,25 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Redis命令学习与集群搭建，包含Redis3.X的集群搭建 | 小尚博客天地</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一、Redis的安装解压安装包[root@node01 sxt]# tar xf redis-2.8.18.tar.gz    安装编译器[root@node01 sxt]# yum install gcc tcl -y  执行编译[root@node01 sxt]# cd redis-2.8.18/[root@node01 redis-2.8.18]# make  安装[root@node01">
+  <meta name="description" content="一、Redis的安装解压安装包[root@node01 sxt]# tar xf redis-2.8.18.tar.gz   安装编译器[root@node01 sxt]# yum install gcc tcl -y    执行编译[root@node01 sxt]# cd redis-2.8.18/  [root@node01 redis-2.8.18]# make 安装[root@node0">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Redis命令学习与集群搭建，包含Redis3.X的集群搭建">
 <meta property="og:url" content="http://yoursite.com/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/index.html">
 <meta property="og:site_name" content="小尚博客天地">
-<meta property="og:description" content="一、Redis的安装解压安装包[root@node01 sxt]# tar xf redis-2.8.18.tar.gz    安装编译器[root@node01 sxt]# yum install gcc tcl -y  执行编译[root@node01 sxt]# cd redis-2.8.18/[root@node01 redis-2.8.18]# make  安装[root@node01">
+<meta property="og:description" content="一、Redis的安装解压安装包[root@node01 sxt]# tar xf redis-2.8.18.tar.gz   安装编译器[root@node01 sxt]# yum install gcc tcl -y    执行编译[root@node01 sxt]# cd redis-2.8.18/  [root@node01 redis-2.8.18]# make 安装[root@node0">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-09-15T09:54:47.630Z">
+<meta property="og:image" content="http://yoursite.com/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/1537026483112.png">
+<meta property="og:image" content="http://yoursite.com/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/1537026918204.png">
+<meta property="og:image" content="http://yoursite.com/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/1537027698916.png">
+<meta property="og:image" content="http://yoursite.com/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/1537027240582.png">
+<meta property="og:image" content="http://yoursite.com/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/1537027780425.png">
+<meta property="og:image" content="http://yoursite.com/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/1537027927309.png">
+<meta property="og:image" content="http://yoursite.com/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/1537028153196.png">
+<meta property="og:updated_time" content="2018-09-15T16:16:54.781Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Redis命令学习与集群搭建，包含Redis3.X的集群搭建">
-<meta name="twitter:description" content="一、Redis的安装解压安装包[root@node01 sxt]# tar xf redis-2.8.18.tar.gz    安装编译器[root@node01 sxt]# yum install gcc tcl -y  执行编译[root@node01 sxt]# cd redis-2.8.18/[root@node01 redis-2.8.18]# make  安装[root@node01">
+<meta name="twitter:description" content="一、Redis的安装解压安装包[root@node01 sxt]# tar xf redis-2.8.18.tar.gz   安装编译器[root@node01 sxt]# yum install gcc tcl -y    执行编译[root@node01 sxt]# cd redis-2.8.18/  [root@node01 redis-2.8.18]# make 安装[root@node0">
+<meta name="twitter:image" content="http://yoursite.com/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/1537026483112.png">
   
     <link rel="alternative" href="/atom.xml" title="小尚博客天地" type="application/atom+xml">
   
@@ -174,23 +182,49 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="一、Redis的安装"><a href="#一、Redis的安装" class="headerlink" title="一、Redis的安装"></a>一、Redis的安装</h2><h3 id="解压安装包"><a href="#解压安装包" class="headerlink" title="解压安装包"></a>解压安装包</h3><table><tr><td bgcolor="#FF4500">[root@node01 sxt]# tar xf redis-2.8.18.tar.gz</td></tr></table>  
-
-<h3 id="安装编译器"><a href="#安装编译器" class="headerlink" title="安装编译器"></a>安装编译器</h3><p>[root@node01 sxt]# yum install gcc tcl -y </p>
-<h3 id="执行编译"><a href="#执行编译" class="headerlink" title="执行编译"></a>执行编译</h3><p>[root@node01 sxt]# cd redis-2.8.18/<br>[root@node01 redis-2.8.18]# make </p>
-<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>[root@node01 redis-2.8.18]# make PREFIX=/opt/sxt/redis install   </p>
-<h3 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h3><p>[root@node01 redis]# vi + /etc/profile<br>export REDIS_HOME=/opt/sxt/redis export PATH=$PATH:$REDIS_HOME/bin<br>[root@node01 redis]# . /etc/profile </p>
-<h3 id="进入编译包的-util-目录下，进一步完善安装配置"><a href="#进入编译包的-util-目录下，进一步完善安装配置" class="headerlink" title="进入编译包的 util 目录下，进一步完善安装配置"></a>进入编译包的 util 目录下，进一步完善安装配置</h3><p> [root@node01 redis]# cd /opt/sxt/redis-2.8.18/utils<br>[root@node01 utils]# ./install_server.sh<br>Welcome to the redis service installer<br>This script will help you easily set up a running redis server </p>
-<ul>
-<li>如果不用默认配置，需要手动输入端口号，我们这里就用默认端口，按 Enter<br>Please select the redis port for this instance: [6379]<br>Selecting default: 6379 </li>
-<li>选择默认的配置文件的名称，按 Enter，使用别的路径和名称需要手动指定<br>Please select the redis config file name [/etc/redis/6379.conf]<br>Selected default - /etc/redis/6379.conf   </li>
-<li>日志存放位置，处理同上<br>Please select the redis log file name [/var/log/redis_6379.log]<br>Selected default - /var/log/redis_6379.log   </li>
-<li>持久化数据目录，处理同上<br>Please select the data directory for this instance [/var/lib/redis/6379]<br>Selected default - /var/lib/redis/6379 </li>
-<li>指定 redis 的命令执行路径，因为已经在环境变量中配置过，这里不再做处理<br>Please select the redis executable path [/opt/sxt/redis/bin/redis-server] Selected config:<br>Port           : 6379<br>Config file    : /etc/redis/6379.conf<br>Log file       : /var/log/redis_6379.log<br>Data dir       : /var/lib/redis/6379<br>Executable     : /opt/sxt/redis/bin/redis-server<br>Cli Executable : /opt/sxt/redis/bin/redis-cli<br>Is this ok? Then press ENTER to go on or Ctrl-C to abort. # Enter<br>Copied /tmp/6379.conf =&gt; /etc/init.d/redis_6379 Installing service…<br>Successfully added to chkconfig!<br>Successfully added to runlevels 345!<br>Starting Redis server…<br>Installation successful!   </li>
-<li>可以多次执行 install_server.sh 脚本安装不同端口下的 redis 服务   <h3 id="进入-redis-客户端"><a href="#进入-redis-客户端" class="headerlink" title="进入 redis 客户端"></a>进入 redis 客户端</h3></li>
-<li>在安装目录下执行 redis-cli，不是编译包下<br>[root@node01 bin]# redis-cli<h2 id="二、Redis-数据模型"><a href="#二、Redis-数据模型" class="headerlink" title="二、Redis 数据模型"></a>二、Redis 数据模型</h2></li>
+        <h2 id="一、Redis的安装"><a href="#一、Redis的安装" class="headerlink" title="一、Redis的安装"></a>一、Redis的安装</h2><h3 id="解压安装包"><a href="#解压安装包" class="headerlink" title="解压安装包"></a>解压安装包</h3><p><table><tr><td bgcolor="#FF4500">[root@node01 sxt]# tar xf redis-2.8.18.tar.gz</td></tr></table>  </p>
+<h3 id="安装编译器"><a href="#安装编译器" class="headerlink" title="安装编译器"></a>安装编译器</h3><p><table><tr><td bgcolor="#FF4500">[root@node01 sxt]# yum install gcc tcl -y </td></tr></table>  </p>
+<h3 id="执行编译"><a href="#执行编译" class="headerlink" title="执行编译"></a>执行编译</h3><p><table><tr><td bgcolor="#FF4500">[root@node01 sxt]# cd redis-2.8.18/</td></tr> </table></p>
+<p><tr><td bgcolor="#FF4500">[root@node01 redis-2.8.18]# make</td></tr></p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p><table><tr><td bgcolor="#FF4500">[root@node01 redis-2.8.18]# make PREFIX=/opt/sxt/redis install  </td></tr></table>   </p>
+<h3 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h3><p><table><tr><td bgcolor="#FF4500">[root@node01 redis]# vi + /etc/profile </td></tr></table></p>
+<p><tr><td bgcolor="#FF4500">export REDIS_HOME=/opt/sxt/redis export PATH=\$PATH:\$REDIS_HOME/bin </td></tr></p>
+<p><tr><td bgcolor="#FF4500">[root@node01 redis]# . /etc/profile </td></tr> </p>
+<h3 id="进入编译包的-util-目录下，进一步完善安装配置"><a href="#进入编译包的-util-目录下，进一步完善安装配置" class="headerlink" title="进入编译包的 util 目录下，进一步完善安装配置"></a>进入编译包的 util 目录下，进一步完善安装配置</h3><p><table><tr><td bgcolor="#FF4500"> [root@node01 redis]# cd /opt/sxt/redis-2.8.18/utils   </td></tr></table></p>
+<p><tr><td bgcolor="#FF4500">[root@node01 utils]# ./install_server.sh  </td></tr><br><br>    Welcome to the redis service installer<br>    This script will help you easily set up a running redis server   </p>
+<pre><code>#如果不用默认配置，需要手动输入端口号，我们这里就用默认端口，按 Enter   
+Please select the redis port for this instance: [6379]    
+Selecting default: 6379 
+#选择默认的配置文件的名称，按 Enter，使用别的路径和名称需要手动指定   
+Please select the redis config file name [/etc/redis/6379.conf]   
+Selected default - /etc/redis/6379.conf   
+#日志存放位置，处理同上    
+Please select the redis log file name [/var/log/redis_6379.log]   
+Selected default - /var/log/redis_6379.log   
+#持久化数据目录，处理同上   
+Please select the data directory for this instance [/var/lib/redis/6379]   
+Selected default - /var/lib/redis/6379 
+#指定 redis 的命令执行路径，因为已经在环境变量中配置过，这里不再做处理   
+Please select the redis executable path [/opt/sxt/redis/bin/redis-server] Selected config:   
+Port           : 6379   
+Config file    : /etc/redis/6379.conf  
+Log file       : /var/log/redis_6379.log   
+Data dir       : /var/lib/redis/6379  
+Executable     : /opt/sxt/redis/bin/redis-server   
+Cli Executable : /opt/sxt/redis/bin/redis-cli     
+Is this ok? Then press ENTER to go on or Ctrl-C to abort. # Enter     
+Copied /tmp/6379.conf =&gt; /etc/init.d/redis_6379 Installing service...   
+Successfully added to chkconfig!   
+Successfully added to runlevels 345!   
+Starting Redis server...   
+Installation successful!   
+#可以多次执行 install_server.sh 脚本安装不同端口下的 redis 服务   
+</code></pre><h3 id="进入-redis-客户端"><a href="#进入-redis-客户端" class="headerlink" title="进入 redis 客户端"></a>进入 redis 客户端</h3><ul>
+<li>在安装目录下执行 redis-cli，不是编译包下<br><table><tr><td bgcolor="#FF4500">[root@node01 bin]# redis-cli  </td></tr></table> <h2 id="二、Redis-数据模型"><a href="#二、Redis-数据模型" class="headerlink" title="二、Redis 数据模型"></a>二、Redis 数据模型</h2>&ensp;&ensp;&ensp;&ensp;Redis 是一个开源的(BSD 协议)，使用 ANSI C 编写，基于内存的且支持持久化，高性能的 Key-Value 的 NoSQL数据库。支持数据结构类型丰富，有如字符串(strings)，散列(hashes)，列表(lists)，集合(sets)，有序集合(sorted sets)与范围查询,bitmaps， hyperloglogs 和地理空间(geospatial)索引半径查询。具有丰富的支持主流语言的客户端，C、C++、Python、Erlang、R、C#、Java、PHP、Objective-C、Perl、Ruby、Scala、Go、JavaScript 等，主要用于：缓存(StackOverFlow)、数据库(微博)、消息中间件(微博)。<br>&ensp;&ensp;&ensp;&ensp;Redis key 值是二进制安全的，这意味着可以用任何二进制序列作为 key 值，从形如<br>“foo”的简单字符串到一个 JPEG 文件的内容都可以。空字符串也是有效 key 值<br>&ensp;&ensp;&ensp;&ensp;Key 取值原则 ：<br><table><tr><td bgcolor="#FF4500">键值不需要太长，消耗内存，且在数据中查找这类键值的计算成本较高键值不宜过短，可读性较差  </td></tr></table><br>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="1537026483112.png" alt="Alt text"></li>
 </ul>
-<p>&ensp;&ensp;&ensp;&ensp;Redis 是一个开源的(BSD 协议)，使用 ANSI C 编写，基于内存的且支持持久化，高性能的 Key-Value 的 NoSQL数据库。支持数据结构类型丰富，有如字符串(strings)，散列(hashes)，列表(lists)，集合(sets)，有序集合(sorted sets)与范围查询,bitmaps， hyperloglogs 和地理空间(geospatial)索引半径查询。具有丰富的支持主流语言的客户端，C、C++、Python、Erlang、R、C#、Java、PHP、Objective-C、Perl、Ruby、Scala、Go、JavaScript 等，主要用于：缓存(StackOverFlow)、数据库(微博)、消息中间件(微博)。</p>
+<h3 id="String"><a href="#String" class="headerlink" title="String"></a>String</h3><p>&ensp;&ensp;&ensp;&ensp;字符串是一种最基本的 Redis 值类型。Redis 字符串是二进制安全的，这意味着一个Redis 字符串能包含任意类型的数据，例如：一张 JPEG 格式的图片或者一个序列化的 Ruby 对象。一个字符串类型的值最多能存储 512M 字节的内容。<br>Key：string<br>Value：string </p>
+<p> &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="./1537026918204.png" alt="Alt text"></p>
+<h4 id="1-String常用命令"><a href="#1-String常用命令" class="headerlink" title="1.String常用命令"></a>1.String常用命令</h4><p> &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="1537027698916.png" alt="Alt text"><br> &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="1537027240582.png" alt="Alt text"><br>  &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="1537027780425.png" alt="Alt text"><br>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="1537027927309.png" alt="Alt text"><br>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="1537028153196.png" alt="Alt text"></p>
 
       
 

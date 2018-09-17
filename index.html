@@ -403,7 +403,7 @@ BITCOUNT 20160601-10
 <blockquote>
 <p>优点<br>写入机制，默认 fysnc 每秒执行，性能很好不阻塞服务，最多丢失一秒的数据<br>重写机制，优化 AOF 文件<br>如果误操作了（FLUSHALL 等），只要 AOF 未被重写，停止服务移除 AOF 文件尾部<br>FLUSHALL 命令，重启 Redis，可以将数据集恢复到 FLUSHALL 执行之前的状态<br>缺点<br>相同数据集，AOF 文件体积较 RDB 大了很多<br>恢复数据库速度叫 RDB 慢（文本，命令重演）</p>
 </blockquote>
-<h3 id="Redis集群"><a href="#Redis集群" class="headerlink" title="Redis集群"></a>Redis集群</h3><h4 id="主从复制-Replication"><a href="#主从复制-Replication" class="headerlink" title="主从复制 Replication"></a>主从复制 Replication</h4><p>&ensp;&ensp;&ensp;&ensp;一个 Redis 服务可以有多个该服务的复制品，这个 Redis 服务称为 Master，其他复制品称为 Slaves，只要网络连接正常，Master 会一直将自己的数据更新同步给 Slaves，保持主从同步，只有 Master 可以执行写命令，Slaves 只能执行读命令。<br>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/Redis集群_01.png" alt="Redis集群"><br>&ensp;&ensp;&ensp;&ensp;从服务器执行客户端发送的读命令，比如 GET、LRANGE、SMEMMBERS、HGET、ZRANGE 等等，客户端可以连接 Slaves 执行读请求，来降低 Master 的读压力。<br>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&amp;ensp<img src="/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/Redis集群_02.png" alt="Redis集群"></p>
+<h3 id="Redis集群"><a href="#Redis集群" class="headerlink" title="Redis集群"></a>Redis集群</h3><h4 id="主从复制-Replication"><a href="#主从复制-Replication" class="headerlink" title="主从复制 Replication"></a>主从复制 Replication</h4><p>&ensp;&ensp;&ensp;&ensp;一个 Redis 服务可以有多个该服务的复制品，这个 Redis 服务称为 Master，其他复制品称为 Slaves，只要网络连接正常，Master 会一直将自己的数据更新同步给 Slaves，保持主从同步，只有 Master 可以执行写命令，Slaves 只能执行读命令。<br>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/Redis集群_01.png" alt="Redis集群"><br>&ensp;&ensp;&ensp;&ensp;从服务器执行客户端发送的读命令，比如 GET、LRANGE、SMEMMBERS、HGET、ZRANGE 等等，客户端可以连接 Slaves 执行读请求，来降低 Master 的读压力。<br>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/Redis集群_02.png" alt="Redis集群"></p>
 <ul>
 <li>配置主从机制</li>
 </ul>
@@ -426,7 +426,7 @@ BITCOUNT 20160601-10
 </blockquote>
 <p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/Redis集群_05.png" alt="Redis集群"></p>
 <ul>
-<li><p>哨兵集群<br>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/Redis集群_06.png" alt="Redis集群"></p>
+<li><p>当服务器下线后重新上线，它也不会变为 master<br>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/Redis集群_06.png" alt="Redis集群"></p>
 </li>
 <li><p>开启哨兵Sentinel</p>
 </li>
@@ -444,6 +444,90 @@ BITCOUNT 20160601-10
 <p>主从对写压力没有分担<br>解决思路就是，使用多个节点分担，将写请求分散到不同节点处理<br>分片Sharding：多节点分担的思路就是关系型数据库处理大表的水平切分思路</p>
 </blockquote>
 <p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/Redis集群_07.png" alt="Redis集群"></p>
+<blockquote>
+<p>Twemproxy 是 Twitter 开发的代理服务器，他兼容 Redis 和 Memcached，允许用户将多个 redis 服务器添加到一个服务器池（pool）里面，并通过用户选择的散列函数和分布函数，将来自客户端的命令请求分发给服务器池中的各个服务器。<br>通过使用 twemproxy 我们可以将数据库分片到多台 redis 服务器上面，并使用这些服务器来分担系统压力以及数据库容量：在服务器硬件条件相同的情况下，对于一个包含 N 台 redis 服务器的池来说，池中每台平均 1/N 的客户端命令请求。<br>向池里添加更多服务器可以线性的扩展系统处理命令请求的能力，以及系统能够保存的数据量</p>
+</blockquote>
+<p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/Redis集群_08.png" alt="Redis集群"></p>
+<ul>
+<li>Twemproxy安装配置与验证略（因为Redis3.X给出了更加完美的解决方案）</li>
+</ul>
+<blockquote>
+<p>总结：<br>前端使用 Twemproxy 做代理，后端的 Redis 数据能基本上根据 key 来进行比较均衡的分布，后端一台 Redis 挂掉后，Twemproxy 能够自动摘除。恢复后，Twemproxy 能够自动识别、恢复并重新加入到 Redis 组中重新使用。Redis 挂掉后，后端数据是否丢失依据 Redis 本身的持久化策略配置，与 Twemproxy 基本无关。如果要新增加一台 Redis，Twemproxy 需要重启才能生效；并且数据不会自动重新 Reblance，需要人工单独写脚本来实现，如原来已经有 2 个节点 Redis，后续有增加 2 个 Redis，则数据分布计算与原来的Redis 分布无关，现有数据如果需要分布均匀的话，需要人工单独处理。如果 Twemproxy 的后端节点数量发生变化，Twemproxy 相同算法的前提下，原来的数据必须重新处理分布，否则会存在找不到 key 值的情况，不管 Twemproxy 后端有几台 Redis，前端的单个Twemproxy 的性能最大也只能和单台 Redis 性能差不多，如同时部署多台 Twemproxy 配置一样，客户端分别连接多台 Twemproxy 可以在一定条件下提高性能。Twemproxy 作为一个第三方的工具，存在一些问题，这里不再详细介绍，具体的解决写性能的问题，redis3.0 给出了较好的解决方案。</p>
+</blockquote>
+<h3 id="Redis集群3-X"><a href="#Redis集群3-X" class="headerlink" title="Redis集群3.X"></a>Redis集群3.X</h3><blockquote>
+<p>由多个 Redis 服务器组成的分布式网络服务集群;<br>每一个 Redis 服务器称为节点Node，节点之间会互相通信。两两相连;<br>Redis 集群无中心节点。</p>
+</blockquote>
+<p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/Redis集群_09.png" alt="Redis集群"></p>
+<ul>
+<li>Redis 集群节点复制<br>&ensp;&ensp;&ensp;&ensp;Redis集群的每个节点都有两种角色可选：主节点master node、从节点slave node。其中主节点用于存储数据，而从节点则是某个主节点的复制品。<br>&ensp;&ensp;&ensp;&ensp;当用户需要处理更多读请求的时候，添加从节点可以扩展系统的读性能，因为Redis集群重用了单机Redis复制特性的代码，所以集群的复制行为和我们之前介绍的单机复制特性的行为是完全一样的。</li>
+</ul>
+<p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/Redis集群_10.png" alt="Redis集群"></p>
+<ul>
+<li><p>Redis 集群故障转移<br>&ensp;&ensp;&ensp;&ensp;Redis集群的主节点内置了类似Redis Sentinel的节点故障检测和自动故障转移功能，当集群中的某个主节点下线时，集群中的其他在线主节点会注意到这一点，并对已下线的主节点进行故障转移。<br>&ensp;&ensp;&ensp;&ensp;集群进行故障转移的方法和Redis Sentinel进行故障转移的方法基本一样，不同的是，在集群里面，故障转移是由集群中其他在线的主节点负责进行的，所以集群不必另外使用Redis Sentinel。<br>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/Redis集群_11.png" alt="Redis集群"></p>
+</li>
+<li><p>Redis 集群分片<br>&ensp;&ensp;&ensp;&ensp;集群将整个数据库分为16384个槽位slot，所有key都数据这些slot中的一个，key的槽位计算公式为slot_number=crc16(key)%16384，其中crc16为16位的循环冗余校验和函数<br>&ensp;&ensp;&ensp;&ensp;集群中的每个主节点都可以处理0个至16383个槽，当16384个槽都有某个节点在负责处理时，集群进入上线状态，并开始处理客户端发送的数据命令请求</p>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>举例<br>三个主节点7000、7001、7002平均分片16384个slot槽位<br>节点7000指派的槽位为0到5460<br>节点7001指派的槽位为5461到10922<br>节点7002指派的槽位为10923到16383</li>
+</ul>
+</blockquote>
+<ul>
+<li>Redis集群Redirect转向<br>&ensp;&ensp;&ensp;&ensp;由于Redis集群无中心节点，请求会发给任意主节点<br>&ensp;&ensp;&ensp;&ensp;主节点只会处理自己负责槽位的命令请求，其它槽位的命令请求，该主节点会返回客户端一个转向错误<br>&ensp;&ensp;&ensp;&ensp;客户端根据错误中包含的地址和端口重新向正确的负责的主节点发起命令请求<br>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/Redis集群_12.png" alt="Redis集群"></li>
+</ul>
+<h3 id="搭建-redis3-0-集群"><a href="#搭建-redis3-0-集群" class="headerlink" title="搭建 redis3.0 集群"></a>搭建 redis3.0 集群</h3><p>物理节点 1 个 node01<br>指定 3 个主节点端口 7000 7001 7002<br>对应的 3 个从节点端口 7003 7004 7005</p>
+<ul>
+<li>安装 redis3.0</li>
+</ul>
+<blockquote>
+<p>[root@node02 sxt]# tar xf redis-3.0.4.tar.gz<br>[root@node02 sxt]# cd redis-3.0.4/<br>[root@node02 redis-3.0.4]# yum install gcc tcl –y<br>[root@node02 redis-3.0.4]# make PREFIX=/opt/sxt/redis.3.0.4-install &amp;&amp; make install<br>[root@node02 redis-3.0.4]# vi + /etc/profile<br>export REDIS_HOME=/opt/sxt/redis.3.0.4-install<br>export PATH=$PATH:$REDIS_HOME/bin<br>[root@node02 redis-3.0.4]# . /etc/profile</p>
+</blockquote>
+<ul>
+<li>安装 ruby</li>
+</ul>
+<blockquote>
+<p>[root@node02 sxt]# yum install ruby rubygems -y</p>
+</blockquote>
+<ul>
+<li>安装 redis 模块（离线安装）</li>
+</ul>
+<blockquote>
+<p>[root@node02 sxt]# gem install –local /usr/local/software/redis-3.3.0.gem</p>
+</blockquote>
+<ul>
+<li>创建 6 个目录并在其中写入对应的配置文件</li>
+</ul>
+<blockquote>
+<p>[root@node02 ~]# mkdir 700{0,1,2,3,4,5}<br>[root@node02 ~]# cd 7000<br>[root@node02 7000]# vi redis.conf<br>cluster-enabled yes<br>port 7000<br>[root@node02 7000]# cd ../7001<br>[root@node02 7001]# vi redis.conf<br>cluster-enabled yes<br>port 7001<br>[root@node02 7001]# cd ../7002<br>[root@node02 7002]# vi redis.conf<br>cluster-enabled yes<br>port 7002<br>[root@node02 7002]# cd ../7003<br>[root@node02 7003]# vi redis.conf<br>cluster-enabled yes<br>port 7003<br>[root@node02 7003]# cd ../7004<br>[root@node02 7004]# vi redis.conf<br>cluster-enabled yes<br>port 7004<br>[root@node02 7004]# cd ../7005<br>[root@node02 7005]# vi redis.conf<br>cluster-enabled yes<br>port 7005</p>
+</blockquote>
+<ul>
+<li>进入对应的子目录启动服务</li>
+</ul>
+<blockquote>
+<p>[root@node02 ~]# cd 7000<br>[root@node02 7000]# redis-server redis.conf<br>[root@node02 ~]# cd 7001<br>[root@node02 7001]# redis-server redis.conf<br>[root@node02 ~]# cd 7002<br>[root@node02 7002]# redis-server redis.conf<br>[root@node02 ~]# cd 7003<br>[root@node02 7003]# redis-server redis.conf<br>[root@node02 ~]# cd 7004<br>[root@node02 7004]# redis-server redis.conf<br>[root@node02 ~]# cd 7005<br>[root@node02 7005]# redis-server redis.conf</p>
+</blockquote>
+<ul>
+<li>在 redis 的编译包的 src 下进行初始化（分槽）</li>
+</ul>
+<blockquote>
+<p>[root@node02 ~]# cd /usr/local/software/redis-3.0.4/src</p>
+</blockquote>
+<p>#1 的意义是，6 台机器，每台 1 个 slave，就是 3 台 master，3 台 slave，如果设置为<br>2，就是 2 台 master，每台有 2 个 slave<br>[root@node02 src]# ./redis-trib.rb create –replicas 1</p>
+<blockquote>
+<p>127.0.0.1:7000<br>127.0.0.1:7001<br>127.0.0.1:7002<br>127.0.0.1:7003<br>127.0.0.1:7004<br>127.0.0.1:7005</p>
+<blockquote>
+<blockquote>
+<p>Creating cluster<br>Connecting to node 127.0.0.1:7000: OK<br>Connecting to node 127.0.0.1:7001: OK<br>Connecting to node 127.0.0.1:7002: OK<br>Connecting to node 127.0.0.1:7003: OK<br>Connecting to node 127.0.0.1:7004: OK<br>Connecting to node 127.0.0.1:7005: OK<br>Performing hash slots allocation on 6 nodes…<br>Using 3 masters:<br>127.0.0.1:7000<br>127.0.0.1:7001<br>127.0.0.1:7002<br>Adding replica 127.0.0.1:7003 to 127.0.0.1:7000<br>Adding replica 127.0.0.1:7004 to 127.0.0.1:7001<br>Adding replica 127.0.0.1:7005 to 127.0.0.1:7002<br>M: aaaff266e632d3418aeef10854ebb0a7aa32ffe1 127.0.0.1:7000<br> slots:0-5460 (5461 slots) master<br>M: fb284eba4d88746bce6b49eb41a461b1b5b92ed1 127.0.0.1:7001<br> slots:5461-10922 (5462 slots) master<br>M: e6b801b203c699ebbbb921f26bf97a2e8ef2812a 127.0.0.1:7002<br> slots:10923-16383 (5461 slots) master<br>S: 01164141f726f80a4d7cd66c528db6f1514d26e0 127.0.0.1:7003<br> replicates aaaff266e632d3418aeef10854ebb0a7aa32ffe1<br>S: 84acbf4cc75293150045f51f3e474f0ecd2fc622 127.0.0.1:7004<br> replicates fb284eba4d88746bce6b49eb41a461b1b5b92ed1<br>S: db575a5f97223c9a2ca4a37171584a47f5806577 127.0.0.1:7005<br> replicates e6b801b203c699ebbbb921f26bf97a2e8ef2812a<br>Can I set the above configuration? (type ‘yes’ to accept): yes<br>Nodes configuration updated<br>Assign a different config epoch to each node<br>Sending CLUSTER MEET messages to join the cluster<br>Waiting for the cluster to join….<br>Performing Cluster Check (using node 127.0.0.1:7000)<br>M: aaaff266e632d3418aeef10854ebb0a7aa32ffe1 127.0.0.1:7000<br> slots:0-5460 (5461 slots) master<br>M: fb284eba4d88746bce6b49eb41a461b1b5b92ed1 127.0.0.1:7001<br> slots:5461-10922 (5462 slots) master<br>M: e6b801b203c699ebbbb921f26bf97a2e8ef2812a 127.0.0.1:7002<br> slots:10923-16383 (5461 slots) master<br>M: 01164141f726f80a4d7cd66c528db6f1514d26e0 127.0.0.1:7003<br> slots: (0 slots) master<br> replicates aaaff266e632d3418aeef10854ebb0a7aa32ffe1<br>M: 84acbf4cc75293150045f51f3e474f0ecd2fc622 127.0.0.1:7004<br> slots: (0 slots) master<br> replicates fb284eba4d88746bce6b49eb41a461b1b5b92ed1<br>M: db575a5f97223c9a2ca4a37171584a47f5806577 127.0.0.1:7005<br> slots: (0 slots) master<br> replicates e6b801b203c699ebbbb921f26bf97a2e8ef2812a<br>[OK] All nodes agree about slots configuration.<br>Check for open slots…<br>Check slots coverage…<br>[OK] All 16384 slots covered</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<ul>
+<li>客户端连接集群做测试</li>
+</ul>
+<blockquote>
+<p>[root@node02 ~]# redis-cli -p 7000 –c<br>127.0.0.1:7000&gt; set k1 hello<br>-&gt; Redirected to slot [12706] located at 127.0.0.1:7002<br>OK<br>127.0.0.1:7002&gt; get k1<br>“hello”<br>停止 7001 的服务后，其 slave7004 变为了 master<br>11137:S 25 Jul 07:53:31.097 # Cluster state changed: fail<br>11137:S 25 Jul 07:53:31.183 # Start of election delayed for 716 milliseconds (rank #0, offset<br>659).<br>11137:S 25 Jul 07:53:31.986 # Starting a failover election for epoch 7.<br>11137:S 25 Jul 07:53:31.989 # Failover election won: I’m the new master.<br>11137:S 25 Jul 07:53:31.989 # configEpoch set to 7 after successful failover<br>11137:M 25 Jul 07:53:31.989 # Connection with master lost.<br>11137:M 25 Jul 07:53:31.989 <em> Caching the disconnected master state.<br>11137:M 25 Jul 07:53:31.989 </em> Discarding previously cached master state.<br>11137:M 25 Jul 07:53:31.989 # Cluster state changed: ok</p>
+</blockquote>
 
       
 

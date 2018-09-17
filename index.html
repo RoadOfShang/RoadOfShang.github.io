@@ -519,6 +519,35 @@ BITCOUNT 20160601-10
 <blockquote>
 <p>[root@node02 ~]# redis-cli -p 7000 –c<br>127.0.0.1:7000&gt; set k1 hello<br>-&gt; Redirected to slot [12706] located at 127.0.0.1:7002<br>OK<br>127.0.0.1:7002&gt; get k1<br>“hello”<br>停止 7001 的服务后，其 slave7004 变为了 master<br>11137:S 25 Jul 07:53:31.097 # Cluster state changed: fail<br>11137:S 25 Jul 07:53:31.183 # Start of election delayed for 716 milliseconds (rank #0, offset<br>659).<br>11137:S 25 Jul 07:53:31.986 # Starting a failover election for epoch 7.<br>11137:S 25 Jul 07:53:31.989 # Failover election won: I’m the new master.<br>11137:S 25 Jul 07:53:31.989 # configEpoch set to 7 after successful failover<br>11137:M 25 Jul 07:53:31.989 # Connection with master lost.<br>11137:M 25 Jul 07:53:31.989 <em> Caching the disconnected master state.<br>11137:M 25 Jul 07:53:31.989 </em> Discarding previously cached master state.<br>11137:M 25 Jul 07:53:31.989 # Cluster state changed: ok</p>
 </blockquote>
+<ul>
+<li>Redis集群总结<br>&ensp;&ensp;&ensp;&ensp;Redis集群是一个由多个节点组成的分布式服务集群，它具有复制、高可用和分片特性<br>&ensp;&ensp;&ensp;&ensp;Redis的集群没有中心节点，并且带有复制和故障转移特性，这可用避免单个节点成为性能瓶颈，或者因为某个节点下线而导致整个集群下线<br>&ensp;&ensp;&ensp;&ensp;集群中的主节点负责处理槽（储存数据），而从节点则是主节点的复制品<br>&ensp;&ensp;&ensp;&ensp;Redis集群将整个数据库分为16384个槽，数据库中的每个键都属于16384个槽中的其中一个<br>&ensp;&ensp;&ensp;&ensp;集群中的每个主节点都可以负责0个至16384个槽，当16384个槽都有节点在负责时，集群进入上线状态，可以执行客户端发送的数据命令<br>&ensp;&ensp;&ensp;&ensp;主节点只会执行和自己负责的槽有关的命令，当节点接收到不属于自己处理的槽的命令时，它将会处理指定槽的节点的地址返回给客户端，而客户端会向正确的节点重新发送<br>&ensp;&ensp;&ensp;&ensp;如果需要完整地分片、复制和高可用特性，并且要避免使用代理带来的性能瓶颈和资源消耗，那么可以选择使用Redis集群；如果只需要一部分特性（比如只需要分片，但不需要复制和高可用等），那么单独选用twemproxy、Redis的复制和Redis Sentinel中的一个或多个</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>—</th>
+<th>twemproxy</th>
+<th>集群</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>运作模式</td>
+<td>代理模式，代理本身可能成为性能瓶颈，随着负载的增加需要添加更多twemproxy来分担请求负载，但每个twemproxy本身也会消耗一定的资源</td>
+<td>分布式，没有中心节点，但是因为每个节点都需要互相进行数据通信，所以在节点数量多时，集群用于进行通信所耗费的网络资源会比较多</td>
+</tr>
+<tr>
+<td>分片</td>
+<td>基本上是按照池中的服务器数量N来分片，每个服务器平均占整个数据库的1/N</td>
+<td>按照槽来进行分片，通过每个节点指派不同数量的槽，可以控制不同节点负责数据量和请求数量</td>
+</tr>
+<tr>
+<td>复制和高可用</td>
+<td>需要配合Redis的复制特性以及Redis Sentinel才能实现复制和高可用</td>
+<td>集群的节点内置了复制和高可用特性</td>
+</tr>
+</tbody>
+</table>
 
       
 

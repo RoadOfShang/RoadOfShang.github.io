@@ -356,24 +356,10 @@ KTable的引入，使得聚合计算拥用了处理乱序问题的能力
     <article id="post-Redis命令学习与集群搭建，包含Redis3-X的集群搭建" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/">Redis命令学习与集群搭建，包含Redis3.X的集群搭建</a>
-    </h1>
-  
-
-        
-        <a href="/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/" class="archive-article-date">
-  	<time datetime="2018-09-15T09:48:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-15</time>
-</a>
-        
-      </header>
-    
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="一、Redis的安装"><a href="#一、Redis的安装" class="headerlink" title="一、Redis的安装"></a>一、Redis的安装</h2><h3 id="解压安装包"><a href="#解压安装包" class="headerlink" title="解压安装包"></a>解压安装包</h3><p><table><tr><td bgcolor="#FF4500">[root@node01 sxt]# tar xf redis-2.8.18.tar.gz</td></tr></table>  </p>
+        <p>title: Redis命令学习与集群搭建，包含Redis3.X的集群搭建<br>date: 2018-09-15 17:48:40</p>
+<h2 id="tags"><a href="#tags" class="headerlink" title="tags:"></a>tags:</h2><h2 id="一、Redis的安装"><a href="#一、Redis的安装" class="headerlink" title="一、Redis的安装"></a>一、Redis的安装</h2><h3 id="解压安装包"><a href="#解压安装包" class="headerlink" title="解压安装包"></a>解压安装包</h3><p><table><tr><td bgcolor="#FF4500">[root@node01 sxt]# tar xf redis-2.8.18.tar.gz</td></tr></table>  </p>
 <h3 id="安装编译器"><a href="#安装编译器" class="headerlink" title="安装编译器"></a>安装编译器</h3><p><table><tr><td bgcolor="#FF4500">[root@node01 sxt]# yum install gcc tcl -y </td></tr></table>  </p>
 <h3 id="执行编译"><a href="#执行编译" class="headerlink" title="执行编译"></a>执行编译</h3><p><table><tr><td bgcolor="#FF4500">[root@node01 sxt]# cd redis-2.8.18/</td></tr> </table></p>
 <p><tr><td bgcolor="#FF4500">[root@node01 redis-2.8.18]# make</td></tr></p>
@@ -411,10 +397,10 @@ Starting Redis server...
 Installation successful!   
 #可以多次执行 install_server.sh 脚本安装不同端口下的 redis 服务   
 </code></pre><h3 id="进入-redis-客户端"><a href="#进入-redis-客户端" class="headerlink" title="进入 redis 客户端"></a>进入 redis 客户端</h3><ul>
-<li>在安装目录下执行 redis-cli，不是编译包下<br><table><tr><td bgcolor="#FF4500">[root@node01 bin]# redis-cli  </td></tr></table> <h2 id="二、Redis-数据模型"><a href="#二、Redis-数据模型" class="headerlink" title="二、Redis 数据模型"></a>二、Redis 数据模型</h2>&ensp;&ensp;&ensp;&ensp;Redis 是一个开源的(BSD 协议)，使用 ANSI C 编写，基于内存的且支持持久化，高性能的 Key-Value 的 NoSQL数据库。支持数据结构类型丰富，有如字符串(strings)，散列(hashes)，列表(lists)，集合(sets)，有序集合(sorted sets)与范围查询,bitmaps， hyperloglogs 和地理空间(geospatial)索引半径查询。具有丰富的支持主流语言的客户端，C、C++、Python、Erlang、R、C#、Java、PHP、Objective-C、Perl、Ruby、Scala、Go、JavaScript 等，主要用于：缓存(StackOverFlow)、数据库(微博)、消息中间件(微博)。<br>&ensp;&ensp;&ensp;&ensp;Redis key 值是二进制安全的，这意味着可以用任何二进制序列作为 key 值，从形如”foo”的简单字符串到一个 JPEG 文件的内容都可以。空字符串也是有效 key 值<br>&ensp;&ensp;&ensp;&ensp;Key 取值原则 ：<br><table><tr><td bgcolor="#FF4500">键值不需要太长，消耗内存，且在数据中查找这类键值的计算成本较高键值不宜过短，可读性较差  </td></tr></table><br>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/redis数据模型.jpg" alt="Redis数据模型"></li>
+<li>在安装目录下执行 redis-cli，不是编译包下<br><table><tr><td bgcolor="#FF4500">[root@node01 bin]# redis-cli  </td></tr></table> <h2 id="二、Redis-数据模型"><a href="#二、Redis-数据模型" class="headerlink" title="二、Redis 数据模型"></a>二、Redis 数据模型</h2>&ensp;&ensp;&ensp;&ensp;Redis 是一个开源的(BSD 协议)，使用 ANSI C 编写，基于内存的且支持持久化，高性能的 Key-Value 的 NoSQL数据库。支持数据结构类型丰富，有如字符串(strings)，散列(hashes)，列表(lists)，集合(sets)，有序集合(sorted sets)与范围查询,bitmaps， hyperloglogs 和地理空间(geospatial)索引半径查询。具有丰富的支持主流语言的客户端，C、C++、Python、Erlang、R、C#、Java、PHP、Objective-C、Perl、Ruby、Scala、Go、JavaScript 等，主要用于：缓存(StackOverFlow)、数据库(微博)、消息中间件(微博)。<br>&ensp;&ensp;&ensp;&ensp;Redis key 值是二进制安全的，这意味着可以用任何二进制序列作为 key 值，从形如”foo”的简单字符串到一个 JPEG 文件的内容都可以。空字符串也是有效 key 值<br>&ensp;&ensp;&ensp;&ensp;Key 取值原则 ：<br><table><tr><td bgcolor="#FF4500">键值不需要太长，消耗内存，且在数据中查找这类键值的计算成本较高键值不宜过短，可读性较差  </td></tr></table><br>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/17/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/redis数据模型.jpg" alt="Redis数据模型"></li>
 </ul>
 <h3 id="String"><a href="#String" class="headerlink" title="String"></a>String</h3><p>&ensp;&ensp;&ensp;&ensp;字符串是一种最基本的 Redis 值类型。Redis 字符串是二进制安全的，这意味着一个Redis 字符串能包含任意类型的数据，例如：一张 JPEG 格式的图片或者一个序列化的 Ruby 对象。一个字符串类型的值最多能存储 512M 字节的内容。<br>Key：string<br>Value：string </p>
-<h4 id="1-String常用命令"><a href="#1-String常用命令" class="headerlink" title="1.String常用命令"></a>1.String常用命令</h4><p> &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/String_01.png" alt="01string"><br> &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/String_02.png" alt="02string"><br> &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/String_03.png" alt="03string"><br>  &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/String_04.png" alt="04string"><br>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/String_05.png" alt="05string"></p>
+<h4 id="1-String常用命令"><a href="#1-String常用命令" class="headerlink" title="1.String常用命令"></a>1.String常用命令</h4><p> &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/17/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/String_01.png" alt="01string"><br> &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/17/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/String_02.png" alt="02string"><br> &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/17/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/String_03.png" alt="03string"><br>  &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/17/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/String_04.png" alt="04string"><br>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/17/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/String_05.png" alt="05string"></p>
 <h4 id="2-与key有关的命令"><a href="#2-与key有关的命令" class="headerlink" title="2.与key有关的命令"></a>2.与key有关的命令</h4><h5 id="TYPE-和-OBJECT-encoding"><a href="#TYPE-和-OBJECT-encoding" class="headerlink" title="TYPE 和 OBJECT encoding"></a>TYPE 和 OBJECT encoding</h5><p>&ensp;&ensp;&ensp;&ensp;&ensp;TYPE 返回的是 redis 支持的常规数据类型，OBJECT encoding 返回的是，value 底层存储的数据结构类型</p>
 <blockquote>
 <p>127.0.0.1:6379&gt; TYPE key5<br>none<br>127.0.0.1:6379&gt; TYPE key3<br>string<br>127.0.0.1:6379&gt; OBJECT encoding key3<br>“int” </p>
@@ -439,34 +425,34 @@ Installation successful!
 <blockquote>
 <p>127.0.0.1:6379&gt; setbit key7 1 1<br>(integer) 0<br>127.0.0.1:6379&gt; setbit key7 3 1<br>(integer) 0<br>127.0.0.1:6379&gt; setbit key7 5 1<br>(integer) 0<br>127.0.0.1:6379&gt; setbit key7 6 1<br>(integer) 0<br>127.0.0.1:6379&gt; setbit key7 7 1<br>(integer) 0<br>127.0.0.1:6379&gt; get key7<br>“W”<br>127.0.0.1:6379&gt; BITOP AND key8 key6 key7<br>(integer) 1<br>127.0.0.1:6379&gt; get key8<br>“A</p>
 </blockquote>
-<p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/bitmap按位与.png" alt="bitmap按位与"></p>
+<p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/17/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/bitmap按位与.png" alt="bitmap按位与"></p>
 <ul>
 <li><p>场景-网站用户上线次数统计</p>
 <p>  网站用户的上线次数统计（活跃用户）<br>  用户 ID 为 key，天作为 offset，上线置为 1<br>  366 个 0，366 /8 ≈ 50Byte<br>  ID 为 500 的用户，今年的第 1 天上线、第 30 天上线<br>  SETBIT u500 1 1<br>  SETBIT u500 30 1<br>  BITCOUNT u500<br>  按天统计网站活跃用户<br>  天作为 key，用户 ID 为 offset，上线置为 1<br>  求一段时间内活跃用户数<br>  SETBIT 20160601 15 1 1 0 0 0 00 00 00 0 00 00 0<br>  SETBIT 20160603 123 1 0 0 0 0 00 00 00 0 00 00 0<br>  SETBIT 20160606 123 1 1 0 0 0 00 00 00 0 00 00 0<br>  求 6 月 1 日到 6 月 10 日的活跃用户<br>  BITOP OR aaa 20160601 20160602 20160603 20160610<br>  BITCOUNT 20160601-10</p>
-<h3 id="List"><a href="#List" class="headerlink" title="List"></a>List</h3><p>&ensp;&ensp;&ensp;&ensp;&ensp;基于 Linked List 实现，元素是字符串类型，列表头尾增删快，中间增删慢，增删元素是常态，元素可以重复出现，最多包含 2^32-1 元素。<br>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/List_01.png" alt="List数据结构例子"><br>列表的索引，从左至右，从 0 开始，从右至左，从-1 开始<br>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/List_02.png" alt="List数据结构例子"></p>
+<h3 id="List"><a href="#List" class="headerlink" title="List"></a>List</h3><p>&ensp;&ensp;&ensp;&ensp;&ensp;基于 Linked List 实现，元素是字符串类型，列表头尾增删快，中间增删慢，增删元素是常态，元素可以重复出现，最多包含 2^32-1 元素。<br>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/17/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/List_01.png" alt="List数据结构例子"><br>列表的索引，从左至右，从 0 开始，从右至左，从-1 开始<br>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/17/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/List_02.png" alt="List数据结构例子"></p>
 </li>
 </ul>
 <blockquote>
 <p>127.0.0.1:6379&gt; lpush list1 a b c<br>(integer) 3<br>127.0.0.1:6379&gt; lpop list1<br>“c”<br>127.0.0.1:6379&gt; rpop list1<br>“a”<br>返回列表中指定范围元素<br>127.0.0.1:6379&gt; lrange list1 0 -1<br>1) “b”<br>获取指定位置的元素<br>127.0.0.1:6379&gt; lindex list1 0 -1<br>“b”<br>设置指定位置元素的值<br>127.0.0.1:6379&gt; lset list1 0 a<br>OK<br>127.0.0.1:6379&gt; lindex list1 0<br>“a”<br>列表长度<br>127.0.0.1:6379&gt; llen list1<br>(integer) 1<br>移除重复元素<br>LREM key count value<br>count &gt; 0 : 从表头开始向表尾搜索，移除与 value 相等的元素，数量为 count<br>count &lt; 0 : 从表尾开始向表头搜索，移除与 value 相等的元素，数量为 count 的绝对值<br>count = 0 : 移除表中所有与 value 相等的值<br>127.0.0.1:6379&gt; lpush list2 a a a b bb bbb c cc cc ccc<br>(integer) 10</p>
 </blockquote>
-<p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/List_03.png" alt="List数据结构例子"></p>
+<p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/17/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/List_03.png" alt="List数据结构例子"></p>
 <blockquote>
 <p>127.0.0.1:6379&gt; lrem list2 2 cc<br>(integer) 2</p>
 </blockquote>
-<p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/List_04.png" alt="List数据结构例子"></p>
+<p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/17/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/List_04.png" alt="List数据结构例子"></p>
 <blockquote>
 <p>127.0.0.1:6379&gt; lrange list2 0 -1<br>1) “ccc”<br>2) “c”<br>3) “bbb”<br>4) “bb”<br>5) “b”<br>6) “a”<br>7) “a”<br>8) “a”<br>去除指定范围外元素<br>127.0.0.1:6379&gt; ltrim list2 0 5<br>OK<br>127.0.0.1:6379&gt; lrange list2 0 -1<br>1) “ccc”<br>2) “c”<br>3) “bbb”<br>4) “bb”<br>5) “b”<br>6) “a”<br>在列表中某个存在的值前或后插入元素<br>如果 key 和指定位置的值不存在，不进行任何操作<br>127.0.0.1:6379&gt; linsert list2 before c jed<br>(integer) 7<br>127.0.0.1:6379&gt; linsert list2 after c tom<br>(integer) 8<br>127.0.0.1:6379&gt; lrange list2 0 -1<br>1) “ccc”<br>2) “jed”<br>3) “c”<br>4) “tom”<br>5) “bbb”<br>6) “bb”<br>7) “b”<br>8) “a”<br>如果弹出的列表不存在或者为空，就会阻塞<br>超时时间设置为 0，就是永久阻塞，直到有数据可以弹出<br>如果多个客户端阻塞在同一个列表上，使用 First In First Service 原则，先到先服务<br>list3 不存在，发生永久阻塞，复制两台 redis 客户端<br>127.0.0.1:6379&gt; brpop list3 0<br>127.0.0.1:6379&gt; brpop list3 0</p>
 </blockquote>
-<p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/List_05.png" alt="List数据结构例子"></p>
+<p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/17/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/List_05.png" alt="List数据结构例子"></p>
 <h3 id="Hash"><a href="#Hash" class="headerlink" title="Hash"></a>Hash</h3><p>&ensp;&ensp;&ensp;&ensp;由 field 和关联的 value 组成的 map 键值对，field 和 value 是字符串类型，一个 hash 中最多包含 2^32-1 键值对。</p>
-<p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/Hash_01.png" alt="Hash数据结构例子"></p>
+<p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/17/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/Hash_01.png" alt="Hash数据结构例子"></p>
 <h4 id="hash常用命令"><a href="#hash常用命令" class="headerlink" title="hash常用命令"></a>hash常用命令</h4><blockquote>
 <p>127.0.0.1:6379&gt; hset message id 1<br>(integer) 1<br>127.0.0.1:6379&gt; hmset message name jed sex 1 age 20<br>OK<br>127.0.0.1:6379&gt; hlen message<br>(integer) 4<br>127.0.0.1:6379&gt; hexists message id<br>(integer) 1<br>127.0.0.1:6379&gt; hget message name<br>“jed”<br>127.0.0.1:6379&gt; hmget message id name sex age<br>1) “1”<br>2) “jed”<br>3) “1”<br>4) “20”<br>127.0.0.1:6379&gt; hgetall message<br>1) “id”<br>2) “1”<br>3) “name”<br>4) “jed”<br>5) “sex”<br>6) “1”<br>7) “age”<br>8) “20”<br>127.0.0.1:6379&gt; hkeys message<br>1) “id”<br>2) “name”<br>3) “sex”<br>4) “age”<br>127.0.0.1:6379&gt; hvals message<br>1) “1”<br>2) “jed”<br>3) “1”<br>4) “20”<br>在字段对应的值上进行整数或浮点数的增量计算<br>127.0.0.1:6379&gt; hincrby message id 1<br>(integer) 2<br>127.0.0.1:6379&gt; hincrbyfloat message id -0.5<br>“1.5”<br>删除指定的字段<br>127.0.0.1:6379&gt; hdel message id<br>(integer) 1<br>127.0.0.1:6379&gt; hkeys message<br>1) “name”<br>2) “sex”<br>3) “age”</p>
 </blockquote>
 <h4 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h4><ul>
 <li>节约内存空间：<br>&ensp;&ensp;&ensp;&ensp;每创建一个键，它都会为这个键储存一些附加的管理信息（比如这个键的类型，这个键最后一次被访问的时间等等），所以数据库里面的键越多，redis 数据库服务器在储存附加管理信息方面耗费的内存就越多，花在管理数据库键上的 CPU 也会越多在字段对应的值上进行浮点数的增量计算。</li>
 </ul>
-<p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/Hash_02.png" alt="Hash数据结构例子"></p>
+<p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/17/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/Hash_02.png" alt="Hash数据结构例子"></p>
 <ul>
 <li>不适合 hash 的情况：<br>&ensp;&ensp;&ensp;&ensp;使用二进制位操作命令，因为 Redis 目前支持对字符串键进行 SETBIT、GETBIT、BITOP等操作，如果你想使用这些操作，那么只能使用字符串键，虽然散列也能保存二进制数据使用过期键功能，Redis 的键过期功能目前只能对键进行过期操作，而不能对散列的字段进行过期操作，因此如果你要对键值对数据使用过期功能的话，那么只能把键值对储存在字符串里面。<h4 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h4><h5 id="微博好友关注"><a href="#微博好友关注" class="headerlink" title="微博好友关注"></a>微博好友关注</h5><blockquote>
 <p>用户 ID 为 key，field 为好友 ID，Value 为关注时间<br>user:1000 fiend:jed time:20150808<br>user:1000 friend:tom time:20150909<br>用户维度统计<br>统计数包括：关注数、粉丝数、喜欢商品数、发帖数<br>用户为 Key，不同维度为 Field，Value 为统计数<br>比如关注了 5 人<br>HSET user:100000 follow 5 fans 5 collections 10 article 5<br>HINCRBY user:100000 follow 1</p>
@@ -477,15 +463,15 @@ Installation successful!
 <h4 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h4><blockquote>
 <p>增加一个或多个元素，如果元素已经存在，则自动忽略<br>127.0.0.1:6379&gt; sadd friends peter tom john<br>(integer) 3<br>127.0.0.1:6379&gt; sadd friends peter bob<br>(integer) 1<br>返回集合包含的所有元素<br>127.0.0.1:6379&gt; smembers friends<br>1) “bob”<br>2) “peter”<br>3) “john”<br>4) “tom”<br>移除一个或者多个元素，元素不存在，自动忽略<br>127.0.0.1:6379&gt; srem friends peter<br>(integer) 1<br>127.0.0.1:6379&gt; smembers friends<br>1) “bob”<br>2) “john”<br>3) “tom”<br>检查给定元素是否存在于集合中<br>127.0.0.1:6379&gt; sismember friends peter<br>(integer) 0<br>集合的无序性：可能返回不同的结果<br>127.0.0.1:6379&gt; sadd s1 a b c d e<br>(integer) 5<br>127.0.0.1:6379&gt; sadd s2 e d b a c<br>(integer) 5<br>127.0.0.1:6379&gt; smembers s1<br>1) “c”<br>2) “b”<br>3) “a”<br>4) “d”<br>5) “e”<br>127.0.0.1:6379&gt; smembers s2<br>1) “b”<br>2) “e”<br>3) “a”<br>4) “d”<br>5) “c”<br>随机返回集合中指定个数的元素<br>如果 count 为正数，且小于集合基数，那么命令返回一个包含 count 个元素的数组，数组中的元素各不相同。如果 count 大于等于集合基数，那么返回整个集合<br>如果 count 为负数，那么命令返回一个数组，数组中的元素可能会重复出现多次，而数组的长度为 count 的绝对值<br>count &lt; 0，长度为 count 绝对值，元素可能重复<br>如果 count 为 0，返回空<br>如果 count 不指定，随机返回一个元素<br>127.0.0.1:6379&gt; srandmember s1 2<br>1) “b”<br>2) “e”<br>返回集合中元素的个数,键的结果会保存信息,集合长度就记录在里面,所以不需要遍历<br>127.0.0.1:6379&gt; scard s1<br>(integer) 5<br>随机从集合中移除并返回这个被移除的元素<br>127.0.0.1:6379&gt; spop s1<br>“a”<br>把元素从源集合移动到目标集合<br>127.0.0.1:6379&gt; smove s1 s3 d<br>(integer) 1<br>127.0.0.1:6379&gt; smembers s3<br>1) “d”</p>
 </blockquote>
-<h4 id="差集"><a href="#差集" class="headerlink" title="差集"></a>差集</h4><p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/Set_01.png" alt="Set差集"></p>
+<h4 id="差集"><a href="#差集" class="headerlink" title="差集"></a>差集</h4><p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/17/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/Set_01.png" alt="Set差集"></p>
 <blockquote>
 <p>127.0.0.1:6379&gt; sadd n1 1 2 3 4 5 6 7 8 9<br>(integer) 9<br>127.0.0.1:6379&gt; sadd n2 1 2 3 4 5 6 9 9 9<br>(integer) 7<br>127.0.0.1:6379&gt; sdiff n1 n2<br>1) “7”<br>2) “8”<br>127.0.0.1:6379&gt; sdiffstore n1-n2 n1 n2<br>(integer) 2<br>127.0.0.1:6379&gt; smembers n1-n2<br>1) “7”<br>2) “8”</p>
 </blockquote>
-<h4 id="并集"><a href="#并集" class="headerlink" title="并集"></a>并集</h4><p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/Set_02.png" alt="Set并集"></p>
+<h4 id="并集"><a href="#并集" class="headerlink" title="并集"></a>并集</h4><p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/17/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/Set_02.png" alt="Set并集"></p>
 <blockquote>
 <p>127.0.0.1:6379&gt; smembers n1Un2<br>1) “1”<br>2) “2”<br>3) “3”<br>4) “4”<br>5) “5”<br>6) “6”<br>7) “7”<br>8) “8”<br>9) “9”</p>
 </blockquote>
-<h5 id="交集"><a href="#交集" class="headerlink" title="交集"></a>交集</h5><p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/Set_03.png" alt="Set交集"></p>
+<h5 id="交集"><a href="#交集" class="headerlink" title="交集"></a>交集</h5><p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/17/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/Set_03.png" alt="Set交集"></p>
 <blockquote>
 <p>127.0.0.1:6379&gt; sinterstore n1In2 n1 n2<br>(integer) 7<br>127.0.0.1:6379&gt; smembers n1In2<br>1) “1”<br>2) “2”<br>3) “3”<br>4) “4”<br>5) “5”<br>6) “6”<br>7) “9”</p>
 </blockquote>
@@ -493,13 +479,13 @@ Installation successful!
 <li>浪微博的共同关注<blockquote>
 <p>需求：当用户访问另一个用户的时候，会显示出两个用户共同关注哪些相同的用户<br>设计：将每个用户关注的用户放在集合中，求交集即可<br>实现如下：<br>peter={‘john’,’jack’,’may’}<br>ben={‘john’,’jack’,’tom’}<br>那么 peter 和 ben 的共同关注为：<br>SINTER peter ben 结果为 {‘john’,’jack’}</p>
 </blockquote>
-<h3 id="SortedSet"><a href="#SortedSet" class="headerlink" title="SortedSet"></a>SortedSet</h3>&ensp;&ensp;&ensp;&ensp;类似 Set 集合，有序的、去重的，元素是字符串类型，每一个元素都关联着一个浮点数分值（Score），并按照分值从小到大的顺序排列集合中的元素。分值可以相同，最多包含 2^32-1 元素。<br>一个保存了水果价格的有序集合：<br>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/SortedSet_01.png" alt="SortedSet_01"></li>
+<h3 id="SortedSet"><a href="#SortedSet" class="headerlink" title="SortedSet"></a>SortedSet</h3>&ensp;&ensp;&ensp;&ensp;类似 Set 集合，有序的、去重的，元素是字符串类型，每一个元素都关联着一个浮点数分值（Score），并按照分值从小到大的顺序排列集合中的元素。分值可以相同，最多包含 2^32-1 元素。<br>一个保存了水果价格的有序集合：<br>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/17/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/SortedSet_01.png" alt="SortedSet_01"></li>
 </ul>
-<p>一个保存了员工薪水的有序集合：<br>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/SortedSet_02.png" alt="SortedSet_02"></p>
+<p>一个保存了员工薪水的有序集合：<br>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/17/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/SortedSet_02.png" alt="SortedSet_02"></p>
 <h4 id="常用命令-1"><a href="#常用命令-1" class="headerlink" title="常用命令"></a>常用命令</h4><blockquote>
 <p>增加一个或多个元素<br>127.0.0.1:6379&gt; zadd fruits 3.2 banana<br>(integer) 1<br>127.0.0.1:6379&gt; zadd fruits 2.0 watermelon<br>(integer) 1<br>127.0.0.1:6379&gt; zadd fruits 4.0 orange 7.0 pear 6.8 apple<br>(integer) 3<br>127.0.0.1:6379&gt; zrange fruits 0 -1<br>1) “watermelon”<br>2) “banana”<br>3) “orange”<br>4) “apple”<br>5) “pear”<br>移除一个或者多个元素，元素不存在，自动忽略<br>127.0.0.1:6379&gt; zrem fruits watermelon pear<br>(integer) 2<br>127.0.0.1:6379&gt; zrange fruits 0 -1<br>1) “banana”<br>2) “orange”<br>3) “apple”<br>显示分值，计算机并不能精确表达每一个浮点数，都是一种近似表达<br>127.0.0.1:6379&gt; zscore fruits banana<br>“3.2000000000000002”<br>增加或者减少分值<br>127.0.0.1:6379&gt; zincrby fruits 1 banana<br>“4.2000000000000002”<br>127.0.0.1:6379&gt; zincrby fruits -0.8 apple<br>“6”<br>返回元素的排名（索引）<br>127.0.0.1:6379&gt; zrank fruits apple<br>(integer) 2<br>127.0.0.1:6379&gt; zrank fruits orange<br>(integer) 0<br>127.0.0.1:6379&gt; zrank fruits banana<br>(integer) 1</p>
 </blockquote>
-<p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/SortedSet_03.png" alt="SortedSet_03"></p>
+<p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/17/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/SortedSet_03.png" alt="SortedSet_03"></p>
 <blockquote>
 <p>返回元素的逆序排名<br>127.0.0.1:6379&gt; zrevrank fruits orange<br>(integer) 2<br>返回指定索引区间元素<br>ZRANGE key start stop [WITHSCORES]<br>如果 score 相同，则按照字典序 lexicographical order 排列<br>默认按照 score 从小到大，如果需要 score 从大到小排列，使用 ZREVRANGE<br>127.0.0.1:6379&gt; zrevrange fruits 0 -1 withscores<br>1) “apple”<br>2) “6”<br>3) “banana”<br>4) “4.2000000000000002”<br>5) “orange”<br>6) “4”<br>返回指定分值区间元素<br>ZRANGEBYSCORE key min max [WITHSCORES] [LIMIT offset count]<br>返回 score 默认属于[min,max]之间，元素按照 score 升序排列，score 相同字典序<br>LIMIT 中 offset 代表跳过多少个元素，count 是返回几个。类似于 Mysql<br>使用小括号，修改区间为开区间，例如(5、(10，-inf 和+inf 表示负无穷和正无穷<br>127.0.0.1:6379&gt; zrangebyscore fruits 4.0 7.0<br>1) “orange”<br>2) “banana”<br>3) “apple”<br>127.0.0.1:6379&gt; zrangebyscore fruits 4.0 7.0 withscores<br>1) “orange”<br>2) “4”<br>3) “banana”<br>4) “4.2000000000000002”<br>5) “apple”<br>6) “6”<br>127.0.0.1:6379&gt; zrangebyscore fruits -inf +inf<br>1) “orange”<br>2) “banana”<br>3) “apple”<br>127.0.0.1:6379&gt; zrangebyscore fruits (4.0 (7.0<br>1) “banana”<br>2) “apple”<br>移除指定排名范围的元素<br>127.0.0.1:6379&gt; zremrangebyrank fruits 0 0<br>(integer) 1<br>127.0.0.1:6379&gt; zrange fruits 0 -1<br>1) “banana”<br>2) “apple”<br>返回集合中元素个数<br>127.0.0.1:6379&gt; zcard fruits<br>(integer) 2</p>
 </blockquote>
@@ -521,8 +507,8 @@ Installation successful!
 </blockquote>
 <h3 id="Redis持久化"><a href="#Redis持久化" class="headerlink" title="Redis持久化"></a>Redis持久化</h3><h4 id="RDB-Redis-DB，默认开启"><a href="#RDB-Redis-DB，默认开启" class="headerlink" title="RDB(Redis DB，默认开启)"></a>RDB(Redis DB，默认开启)</h4><p>&ensp;&ensp;&ensp;&ensp;在默认情况下，Redis 将数据库快照保存在名字为 dump.rdb 的二进制文件中<br>&ensp;&ensp;&ensp;&ensp;自动：按照配置文件中的条件满足就执行 BGSAVE，save 60 1000，Redis 如果满足在 60秒内至少有 1000 个键被改动，那么就会自动保存一次<br>&ensp;&ensp;&ensp;&ensp;手动：客户端发起 SAVE、BGSAVE 命令</p>
 <ul>
-<li>SAVE<br>&ensp;&ensp;&ensp;&ensp;阻塞 Redis 服务，无法响应客户端请求，创建新的 dump.rdb 替代旧文件<br>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/Redis持久化_01.png" alt="redis持久化之SAVE"></li>
-<li>BGSAVE<br>&ensp;&ensp;&ensp;&ensp;非阻塞，Redis 服务正常接收处理客户端请求，Redis 会 fork()一个新的子进程来创建RDB 文件，子进程处理完后会向父进程发送一个信号，通知它处理完毕，父进程用新的dump.rdb 替代旧文件。BGSAVE 是一个异步命令。<br>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/Redis持久化_02.png" alt="redis持久化之BGSAVE"></li>
+<li>SAVE<br>&ensp;&ensp;&ensp;&ensp;阻塞 Redis 服务，无法响应客户端请求，创建新的 dump.rdb 替代旧文件<br>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/17/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/Redis持久化_01.png" alt="redis持久化之SAVE"></li>
+<li>BGSAVE<br>&ensp;&ensp;&ensp;&ensp;非阻塞，Redis 服务正常接收处理客户端请求，Redis 会 fork()一个新的子进程来创建RDB 文件，子进程处理完后会向父进程发送一个信号，通知它处理完毕，父进程用新的dump.rdb 替代旧文件。BGSAVE 是一个异步命令。<br>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/17/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/Redis持久化_02.png" alt="redis持久化之BGSAVE"></li>
 </ul>
 <p>&ensp;&ensp;&ensp;&ensp;假如内存是 512G，目前 redis 占用 40G，当执行 bgsave 时，子进程内存中存储父进程内存的指向，不必开辟真实 800G 的内存占用，父进程不会阻塞，如果在 bgsave 过程中客户端修改了父进程的内存，比如发生了写动作，那么父进程会发生阻塞，fork 实行 copy on write 机制，把修改前的父进程的值 copy 到子进程的内存中，copy 完成后才允许客户端的下一个修改操作。<br>&ensp;&ensp;&ensp;&ensp;BGSAVE 09:00 开始执行，10:00 完成，持久化数据存储的是 09:00 的数据。</p>
 <ul>
@@ -559,7 +545,7 @@ Installation successful!
 <p>会丢失最近写入、修改的而未能持久化的数据<br>folk 过程非常耗时，会造成毫秒级不能响应客户端请求</p>
 </blockquote>
 <h5 id="生产环境如何使用RDB"><a href="#生产环境如何使用RDB" class="headerlink" title="生产环境如何使用RDB"></a>生产环境如何使用RDB</h5><p>&ensp;&ensp;&ensp;&ensp;创建一个定时任务 cron job，每小时或者每天将 dump.rdb 复制到指定目录，确保备份文件名称带有日期时间信息，便于管理和还原对应的时间点的快照版本，定时任务删除过期的备份，如果有必要，跨物理主机、跨机架、异地备份。</p>
-<h4 id="AOF（Append-only-file）"><a href="#AOF（Append-only-file）" class="headerlink" title="AOF（Append only file）"></a>AOF（Append only file）</h4><p>&ensp;&ensp;&ensp;&ensp;Append only file，采用追加的方式保存，默认文件 appendonly.aof，记录所有的写操作命令，在服务启动的时候使用这些命令就可以还原数据库。调整 AOF 持久化策略，可以在服务出现故障时，不丢失任何数据，也可以丢失一秒的数据。相对于 RDB 损失小得多。<br>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/AOF_01.png" alt="AOF"></p>
+<h4 id="AOF（Append-only-file）"><a href="#AOF（Append-only-file）" class="headerlink" title="AOF（Append only file）"></a>AOF（Append only file）</h4><p>&ensp;&ensp;&ensp;&ensp;Append only file，采用追加的方式保存，默认文件 appendonly.aof，记录所有的写操作命令，在服务启动的时候使用这些命令就可以还原数据库。调整 AOF 持久化策略，可以在服务出现故障时，不丢失任何数据，也可以丢失一秒的数据。相对于 RDB 损失小得多。<br>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/17/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/AOF_01.png" alt="AOF"></p>
 <ul>
 <li>AOF 写入机制</li>
 </ul>
@@ -578,7 +564,7 @@ Installation successful!
 <blockquote>
 <p>重写过程：<br>fork 一个子进程负责重写 AOF 文件<br>子进程会创建一个临时文件写入 AOF 信息<br>父进程会开辟一个内存缓冲区接收新的写命令<br>子进程重写完成后，父进程会获得一个信号，将父进程接收到的新的写操作由子进程写入到临时文件中<br>新文件替代旧文件<br>注：如果写入操作的时候出现故障导致命令写半截，可以使用 redis-check-aof 工具修复</p>
 </blockquote>
-<p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/AOF_02.png" alt="AOF"></p>
+<p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/17/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/AOF_02.png" alt="AOF"></p>
 <ul>
 <li>手动触发</li>
 </ul>
@@ -591,7 +577,7 @@ Installation successful!
 <blockquote>
 <p>优点<br>写入机制，默认 fysnc 每秒执行，性能很好不阻塞服务，最多丢失一秒的数据<br>重写机制，优化 AOF 文件<br>如果误操作了（FLUSHALL 等），只要 AOF 未被重写，停止服务移除 AOF 文件尾部FLUSHALL 命令，重启 Redis，可以将数据集恢复到 FLUSHALL 执行之前的状态<br>缺点<br>相同数据集，AOF 文件体积较 RDB 大了很多<br>恢复数据库速度叫 RDB 慢（文本，命令重演）</p>
 </blockquote>
-<h3 id="Redis集群"><a href="#Redis集群" class="headerlink" title="Redis集群"></a>Redis集群</h3><h4 id="主从复制-Replication"><a href="#主从复制-Replication" class="headerlink" title="主从复制 Replication"></a>主从复制 Replication</h4><p>&ensp;&ensp;&ensp;&ensp;一个 Redis 服务可以有多个该服务的复制品，这个 Redis 服务称为 Master，其他复制品称为 Slaves，只要网络连接正常，Master 会一直将自己的数据更新同步给 Slaves，保持主从同步，只有 Master 可以执行写命令，Slaves 只能执行读命令。<br>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/Redis集群_01.png" alt="Redis集群"><br>&ensp;&ensp;&ensp;&ensp;从服务器执行客户端发送的读命令，比如 GET、LRANGE、SMEMMBERS、HGET、ZRANGE 等等，客户端可以连接 Slaves 执行读请求，来降低 Master 的读压力。<br>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/Redis集群_02.png" alt="Redis集群"></p>
+<h3 id="Redis集群"><a href="#Redis集群" class="headerlink" title="Redis集群"></a>Redis集群</h3><h4 id="主从复制-Replication"><a href="#主从复制-Replication" class="headerlink" title="主从复制 Replication"></a>主从复制 Replication</h4><p>&ensp;&ensp;&ensp;&ensp;一个 Redis 服务可以有多个该服务的复制品，这个 Redis 服务称为 Master，其他复制品称为 Slaves，只要网络连接正常，Master 会一直将自己的数据更新同步给 Slaves，保持主从同步，只有 Master 可以执行写命令，Slaves 只能执行读命令。<br>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/17/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/Redis集群_01.png" alt="Redis集群"><br>&ensp;&ensp;&ensp;&ensp;从服务器执行客户端发送的读命令，比如 GET、LRANGE、SMEMMBERS、HGET、ZRANGE 等等，客户端可以连接 Slaves 执行读请求，来降低 Master 的读压力。<br>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/17/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/Redis集群_02.png" alt="Redis集群"></p>
 <ul>
 <li>配置主从机制</li>
 </ul>
@@ -604,17 +590,17 @@ Installation successful!
 </ul>
 <h4 id="哨兵Sentinel"><a href="#哨兵Sentinel" class="headerlink" title="哨兵Sentinel"></a>哨兵Sentinel</h4><p>&ensp;&ensp;&ensp;&ensp;官方提供的高可用方案，可以用它管理多个 Redis 服务实例，编译后产生 redis-sentinel程序文件，Redis Sentinel 是一个分布式系统，可以在一个架构中运行多个 Sentinel 进程。</p>
 <ul>
-<li><p>监控 Monitoring<br>&ensp;&ensp;&ensp;&ensp;Sentinel 会不断检查 Master 和 Slaves 是否正常，每一个 Sentinel 可以监控任意多个Master 和该 Master 下的 Slaves。<br>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/Redis集群_03.png" alt="Redis集群"></p>
+<li><p>监控 Monitoring<br>&ensp;&ensp;&ensp;&ensp;Sentinel 会不断检查 Master 和 Slaves 是否正常，每一个 Sentinel 可以监控任意多个Master 和该 Master 下的 Slaves。<br>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/17/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/Redis集群_03.png" alt="Redis集群"></p>
 </li>
-<li><p>Sentinel 网络<br>&ensp;&ensp;&ensp;&ensp;监控同一个 Master 的 Sentinel 会自动连接，组成一个分布式的 Sentinel 网络，互相通信并交换彼此关于被监视服务器的信息。<br>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/Redis集群_04.png" alt="Redis集群"></p>
+<li><p>Sentinel 网络<br>&ensp;&ensp;&ensp;&ensp;监控同一个 Master 的 Sentinel 会自动连接，组成一个分布式的 Sentinel 网络，互相通信并交换彼此关于被监视服务器的信息。<br>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/17/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/Redis集群_04.png" alt="Redis集群"></p>
 </li>
 </ul>
 <blockquote>
 <p>当一个 sentinel 认为被监视的服务器已经下线时，它会向网络中的其他 Sentinel 进行确认，判断该服务器是否真的已经下线，如果下线的服务器为主服务器，那么 sentinel 网络将对下线主服务器进行自动故障转移，通过将下线主服务器的某个从服务器提升为新的主服务器，并让其从服务器转为复制新的主服务器，以此来让系统重新回到上线的状态，sentinel 网络采用过半机制来判断服务器是否下线，当超过半数的 sentinel 认为服务器已经下线，就进行故障转移，而认为服务器没有下线（可能是由于网络原因无法提交信息给其他 sentinel）的那些少数 sentinel 将会不再与多数的 sentinel 通信，也不会提供服务。当服务器下线后重新上线，它也不会变为 master。</p>
 </blockquote>
-<p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/Redis集群_05.png" alt="Redis集群"></p>
+<p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/17/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/Redis集群_05.png" alt="Redis集群"></p>
 <ul>
-<li><p>当服务器下线后重新上线，它也不会变为 master<br>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/Redis集群_06.png" alt="Redis集群"></p>
+<li><p>当服务器下线后重新上线，它也不会变为 master<br>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/17/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/Redis集群_06.png" alt="Redis集群"></p>
 </li>
 <li><p>开启哨兵Sentinel</p>
 </li>
@@ -631,11 +617,11 @@ Installation successful!
 <blockquote>
 <p>主从对写压力没有分担<br>解决思路就是，使用多个节点分担，将写请求分散到不同节点处理<br>分片Sharding：多节点分担的思路就是关系型数据库处理大表的水平切分思路</p>
 </blockquote>
-<p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/Redis集群_07.png" alt="Redis集群"></p>
+<p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/17/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/Redis集群_07.png" alt="Redis集群"></p>
 <blockquote>
 <p>Twemproxy 是 Twitter 开发的代理服务器，他兼容 Redis 和 Memcached，允许用户将多个 redis 服务器添加到一个服务器池（pool）里面，并通过用户选择的散列函数和分布函数，将来自客户端的命令请求分发给服务器池中的各个服务器。<br>通过使用 twemproxy 我们可以将数据库分片到多台 redis 服务器上面，并使用这些服务器来分担系统压力以及数据库容量：在服务器硬件条件相同的情况下，对于一个包含 N 台 redis 服务器的池来说，池中每台平均 1/N 的客户端命令请求。<br>向池里添加更多服务器可以线性的扩展系统处理命令请求的能力，以及系统能够保存的数据量</p>
 </blockquote>
-<p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/Redis集群_08.png" alt="Redis集群"></p>
+<p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/17/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/Redis集群_08.png" alt="Redis集群"></p>
 <ul>
 <li>Twemproxy安装配置与验证略（因为Redis3.X给出了更加完美的解决方案）</li>
 </ul>
@@ -645,13 +631,13 @@ Installation successful!
 <h3 id="Redis集群3-X"><a href="#Redis集群3-X" class="headerlink" title="Redis集群3.X"></a>Redis集群3.X</h3><blockquote>
 <p>由多个 Redis 服务器组成的分布式网络服务集群;<br>每一个 Redis 服务器称为节点Node，节点之间会互相通信。两两相连;<br>Redis 集群无中心节点。</p>
 </blockquote>
-<p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/Redis集群_09.png" alt="Redis集群"></p>
+<p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/17/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/Redis集群_09.png" alt="Redis集群"></p>
 <ul>
 <li>Redis 集群节点复制<br>&ensp;&ensp;&ensp;&ensp;Redis集群的每个节点都有两种角色可选：主节点master node、从节点slave node。其中主节点用于存储数据，而从节点则是某个主节点的复制品。<br>&ensp;&ensp;&ensp;&ensp;当用户需要处理更多读请求的时候，添加从节点可以扩展系统的读性能，因为Redis集群重用了单机Redis复制特性的代码，所以集群的复制行为和我们之前介绍的单机复制特性的行为是完全一样的。</li>
 </ul>
-<p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/Redis集群_10.png" alt="Redis集群"></p>
+<p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/17/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/Redis集群_10.png" alt="Redis集群"></p>
 <ul>
-<li><p>Redis 集群故障转移<br>&ensp;&ensp;&ensp;&ensp;Redis集群的主节点内置了类似Redis Sentinel的节点故障检测和自动故障转移功能，当集群中的某个主节点下线时，集群中的其他在线主节点会注意到这一点，并对已下线的主节点进行故障转移。<br>&ensp;&ensp;&ensp;&ensp;集群进行故障转移的方法和Redis Sentinel进行故障转移的方法基本一样，不同的是，在集群里面，故障转移是由集群中其他在线的主节点负责进行的，所以集群不必另外使用Redis Sentinel。<br>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/Redis集群_11.png" alt="Redis集群"></p>
+<li><p>Redis 集群故障转移<br>&ensp;&ensp;&ensp;&ensp;Redis集群的主节点内置了类似Redis Sentinel的节点故障检测和自动故障转移功能，当集群中的某个主节点下线时，集群中的其他在线主节点会注意到这一点，并对已下线的主节点进行故障转移。<br>&ensp;&ensp;&ensp;&ensp;集群进行故障转移的方法和Redis Sentinel进行故障转移的方法基本一样，不同的是，在集群里面，故障转移是由集群中其他在线的主节点负责进行的，所以集群不必另外使用Redis Sentinel。<br>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/17/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/Redis集群_11.png" alt="Redis集群"></p>
 </li>
 <li><p>Redis 集群分片<br>&ensp;&ensp;&ensp;&ensp;集群将整个数据库分为16384个槽位slot，所有key都数据这些slot中的一个，key的槽位计算公式为slot_number=crc16(key)%16384，其中crc16为16位的循环冗余校验和函数<br>&ensp;&ensp;&ensp;&ensp;集群中的每个主节点都可以处理0个至16383个槽，当16384个槽都有某个节点在负责处理时，集群进入上线状态，并开始处理客户端发送的数据命令请求</p>
 </li>
@@ -662,7 +648,7 @@ Installation successful!
 </ul>
 </blockquote>
 <ul>
-<li>Redis集群Redirect转向<br>&ensp;&ensp;&ensp;&ensp;由于Redis集群无中心节点，请求会发给任意主节点<br>&ensp;&ensp;&ensp;&ensp;主节点只会处理自己负责槽位的命令请求，其它槽位的命令请求，该主节点会返回客户端一个转向错误<br>&ensp;&ensp;&ensp;&ensp;客户端根据错误中包含的地址和端口重新向正确的负责的主节点发起命令请求<br>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/Redis集群_12.png" alt="Redis集群"></li>
+<li>Redis集群Redirect转向<br>&ensp;&ensp;&ensp;&ensp;由于Redis集群无中心节点，请求会发给任意主节点<br>&ensp;&ensp;&ensp;&ensp;主节点只会处理自己负责槽位的命令请求，其它槽位的命令请求，该主节点会返回客户端一个转向错误<br>&ensp;&ensp;&ensp;&ensp;客户端根据错误中包含的地址和端口重新向正确的负责的主节点发起命令请求<br>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/17/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/Redis集群_12.png" alt="Redis集群"></li>
 </ul>
 <h3 id="搭建-redis3-0-集群"><a href="#搭建-redis3-0-集群" class="headerlink" title="搭建 redis3.0 集群"></a>搭建 redis3.0 集群</h3><p>物理节点 1 个 node01<br>指定 3 个主节点端口 7000 7001 7002<br>对应的 3 个从节点端口 7003 7004 7005</p>
 <ul>
@@ -748,7 +734,7 @@ Installation successful!
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/09/17/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/">展开全文 >></a>
         </p>
       
 

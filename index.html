@@ -183,7 +183,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kafka/">Kafka</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/">Redis</a></li></ul>
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kafka/">Kafka</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/">Redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hive/">hive</a></li></ul>
                     </div>
                 </section>
                 
@@ -259,6 +259,68 @@
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-hive执行sql报错——incorrect-data-check-原因及解决办法" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/10/16/hive执行sql报错——incorrect-data-check-原因及解决办法/" class="article-date">
+      <time datetime="2018-10-16T10:46:23.000Z" itemprop="datePublished">2018-10-16</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/10/16/hive执行sql报错——incorrect-data-check-原因及解决办法/">hive执行sql报错:incorrect data check 原因及解决办法</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>&ensp;&ensp;&ensp;&ensp;执行hiveSQL过程中发现一个非常无解的问题，就是将 .gz 格式的日志文件映射成hive表，使用hive进行日志清洗过程中报错：Failed with exception java.io.IOException:java.io.IOException: incorrect data check。网上各种查资料，没有发现相关文档。现将问题原因和解决办法总结如下</p>
+<h2 id="报错原因："><a href="#报错原因：" class="headerlink" title="报错原因："></a>报错原因：</h2><p>&ensp;&ensp;&ensp;&ensp;通过对映射的表做count()等操作，发现执行过程中报同样错误，讨论认为是该 .gz 格式的压缩文件损坏导致hive扫描数据出错，将该文件从hdfs上下载到本机进行解压，失败！！！！<br>&ensp;&ensp;&ensp;&ensp;太完美了，不是清洗过程的问题。是源文件损坏导致数据检查错误。做程序员，发现问题所在简直太令人兴奋了！！</p>
+<h2 id="解决办法："><a href="#解决办法：" class="headerlink" title="解决办法："></a>解决办法：</h2><p>&ensp;&ensp;&ensp;&ensp;easy的不能再easy了，找运维小哥哥拿到源文件，gzip压缩，上传到hdfs相应目录，重跑任务，OK！问题解决！！</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hive/">hive</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-分布式流处理新贵Kafka-Stream" class="article article-type-post" itemscope itemprop="blogPost">
   

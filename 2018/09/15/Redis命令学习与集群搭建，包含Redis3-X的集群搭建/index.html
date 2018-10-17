@@ -59,7 +59,7 @@
 <meta property="og:image" content="http://yoursite.com/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/Redis集群_10.png">
 <meta property="og:image" content="http://yoursite.com/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/Redis集群_11.png">
 <meta property="og:image" content="http://yoursite.com/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/Redis集群_12.png">
-<meta property="og:updated_time" content="2018-09-22T04:07:15.197Z">
+<meta property="og:updated_time" content="2018-10-17T06:42:48.470Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Redis命令学习与集群搭建，包含Redis3.X的集群搭建">
 <meta name="twitter:description" content="一、Redis的安装解压安装包[root@node01 sxt]# tar xf redis-2.8.18.tar.gz   安装编译器[root@node01 sxt]# yum install gcc tcl -y    执行编译[root@node01 sxt]# cd redis-2.8.18/  [root@node01 redis-2.8.18]# make 安装[root@node0">
@@ -404,7 +404,7 @@ Installation successful!
 <p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/bitmap按位与.png" alt="bitmap按位与"></p>
 <ul>
 <li><p>场景-网站用户上线次数统计</p>
-<p>  网站用户的上线次数统计（活跃用户）<br>  用户 ID 为 key，天作为 offset，上线置为 1<br>  366 个 0，366 /8 ≈ 50Byte<br>  ID 为 500 的用户，今年的第 1 天上线、第 30 天上线<br>  SETBIT u500 1 1<br>  SETBIT u500 30 1<br>  BITCOUNT u500<br>  按天统计网站活跃用户<br>  天作为 key，用户 ID 为 offset，上线置为 1<br>  求一段时间内活跃用户数<br>  SETBIT 20160601 15 1 1 0 0 0 00 00 00 0 00 00 0<br>  SETBIT 20160603 123 1 0 0 0 0 00 00 00 0 00 00 0<br>  SETBIT 20160606 123 1 1 0 0 0 00 00 00 0 00 00 0<br>  求 6 月 1 日到 6 月 10 日的活跃用户<br>  BITOP OR aaa 20160601 20160602 20160603 20160610<br>  BITCOUNT 20160601-10</p>
+<p>  网站用户的上线次数统计（活跃用户）<br>  用户 ID 为 key，天作为 offset，上线置为 1<br>  366 个 0，366 /8 ≈ 50Byte<br>  ID 为 500 的用户，今年的第 1 天上线、第 30 天上线<br>  SETBIT u500 1 1<br>  SETBIT u500 30 1<br>  BITCOUNT u500<br>  按天统计网站活跃用户<br>  天作为 key，用户 ID 为 offset，上线置为 1<br>  求一段时间内活跃用户数<br>  SETBIT 20160601 15 1<br>  SETBIT 20160603 123 1<br>  SETBIT 20160606 123 1<br>  求 6 月 1 日到 6 月 10 日的活跃用户<br>  BITOP OR aaa 20160601 20160602 20160603…. 20160610<br>  BITCOUNT aaa 0 -1</p>
 <h3 id="List"><a href="#List" class="headerlink" title="List"></a>List</h3><p>&ensp;&ensp;&ensp;&ensp;&ensp;基于 Linked List 实现，元素是字符串类型，列表头尾增删快，中间增删慢，增删元素是常态，元素可以重复出现，最多包含 2^32-1 元素。<br>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/List_01.png" alt="List数据结构例子"><br>列表的索引，从左至右，从 0 开始，从右至左，从-1 开始<br>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/List_02.png" alt="List数据结构例子"></p>
 </li>
 </ul>
@@ -709,7 +709,7 @@ Installation successful!
         <p><span>本文标题:</span><a href="/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/">Redis命令学习与集群搭建，包含Redis3.X的集群搭建</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Shang Jianli</a></p>
         <p><span>发布时间:</span>2018-09-15, 17:48:40</p>
-        <p><span>最后更新:</span>2018-09-22, 12:07:15</p>
+        <p><span>最后更新:</span>2018-10-17, 14:42:48</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/" title="Redis命令学习与集群搭建，包含Redis3.X的集群搭建">http://yoursite.com/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/</a>
             <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/　　作者: Shang Jianli" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>

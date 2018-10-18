@@ -59,7 +59,7 @@
 <meta property="og:image" content="http://yoursite.com/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/Redis集群_10.png">
 <meta property="og:image" content="http://yoursite.com/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/Redis集群_11.png">
 <meta property="og:image" content="http://yoursite.com/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/Redis集群_12.png">
-<meta property="og:updated_time" content="2018-10-17T06:42:48.470Z">
+<meta property="og:updated_time" content="2018-10-18T07:53:38.377Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Redis命令学习与集群搭建，包含Redis3.X的集群搭建">
 <meta name="twitter:description" content="一、Redis的安装解压安装包[root@node01 sxt]# tar xf redis-2.8.18.tar.gz   安装编译器[root@node01 sxt]# yum install gcc tcl -y    执行编译[root@node01 sxt]# cd redis-2.8.18/  [root@node01 redis-2.8.18]# make 安装[root@node0">
@@ -444,8 +444,9 @@ Installation successful!
 <p>127.0.0.1:6379&gt; sadd n1 1 2 3 4 5 6 7 8 9<br>(integer) 9<br>127.0.0.1:6379&gt; sadd n2 1 2 3 4 5 6 9 9 9<br>(integer) 7<br>127.0.0.1:6379&gt; sdiff n1 n2<br>1) “7”<br>2) “8”<br>127.0.0.1:6379&gt; sdiffstore n1-n2 n1 n2<br>(integer) 2<br>127.0.0.1:6379&gt; smembers n1-n2<br>1) “7”<br>2) “8”</p>
 </blockquote>
 <h4 id="并集"><a href="#并集" class="headerlink" title="并集"></a>并集</h4><p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/Set_02.png" alt="Set并集"></p>
+<p>SUNION key1 [key2] 返回所有给定集合的并集<br>SUNIONSTORE destination key1 [key2] 所有给定集合的并集存储在 destination 集合中</p>
 <blockquote>
-<p>127.0.0.1:6379&gt; smembers n1Un2<br>1) “1”<br>2) “2”<br>3) “3”<br>4) “4”<br>5) “5”<br>6) “6”<br>7) “7”<br>8) “8”<br>9) “9”</p>
+<p>127.0.0.1:6379&gt; SUNIONSTORE n1Un2 n1 n2<br>integer) 9<br>127.0.0.1:6379&gt; smembers n1Un2<br>1) “1”<br>2) “2”<br>3) “3”<br>4) “4”<br>5) “5”<br>6) “6”<br>7) “7”<br>8) “8”<br>9) “9”</p>
 </blockquote>
 <h5 id="交集"><a href="#交集" class="headerlink" title="交集"></a>交集</h5><p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/Set_03.png" alt="Set交集"></p>
 <blockquote>
@@ -709,7 +710,7 @@ Installation successful!
         <p><span>本文标题:</span><a href="/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/">Redis命令学习与集群搭建，包含Redis3.X的集群搭建</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Shang Jianli</a></p>
         <p><span>发布时间:</span>2018-09-15, 17:48:40</p>
-        <p><span>最后更新:</span>2018-10-17, 14:42:48</p>
+        <p><span>最后更新:</span>2018-10-18, 15:53:38</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/" title="Redis命令学习与集群搭建，包含Redis3.X的集群搭建">http://yoursite.com/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/</a>
             <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/　　作者: Shang Jianli" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>

@@ -658,8 +658,9 @@ Installation successful!
 <p>127.0.0.1:6379&gt; sadd n1 1 2 3 4 5 6 7 8 9<br>(integer) 9<br>127.0.0.1:6379&gt; sadd n2 1 2 3 4 5 6 9 9 9<br>(integer) 7<br>127.0.0.1:6379&gt; sdiff n1 n2<br>1) “7”<br>2) “8”<br>127.0.0.1:6379&gt; sdiffstore n1-n2 n1 n2<br>(integer) 2<br>127.0.0.1:6379&gt; smembers n1-n2<br>1) “7”<br>2) “8”</p>
 </blockquote>
 <h4 id="并集"><a href="#并集" class="headerlink" title="并集"></a>并集</h4><p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/Set_02.png" alt="Set并集"></p>
+<p>SUNION key1 [key2] 返回所有给定集合的并集<br>SUNIONSTORE destination key1 [key2] 所有给定集合的并集存储在 destination 集合中</p>
 <blockquote>
-<p>127.0.0.1:6379&gt; smembers n1Un2<br>1) “1”<br>2) “2”<br>3) “3”<br>4) “4”<br>5) “5”<br>6) “6”<br>7) “7”<br>8) “8”<br>9) “9”</p>
+<p>127.0.0.1:6379&gt; SUNIONSTORE n1Un2 n1 n2<br>integer) 9<br>127.0.0.1:6379&gt; smembers n1Un2<br>1) “1”<br>2) “2”<br>3) “3”<br>4) “4”<br>5) “5”<br>6) “6”<br>7) “7”<br>8) “8”<br>9) “9”</p>
 </blockquote>
 <h5 id="交集"><a href="#交集" class="headerlink" title="交集"></a>交集</h5><p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img src="/2018/09/15/Redis命令学习与集群搭建，包含Redis3-X的集群搭建/Set_03.png" alt="Set交集"></p>
 <blockquote>

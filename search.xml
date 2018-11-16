@@ -3,6 +3,23 @@
   
     
     <entry>
+      <title>Win10下安装Docker并将windows文件夹挂载到Docker和linux上</title>
+      <link href="/2018/11/15/Win10%E4%B8%8B%E5%AE%89%E8%A3%85Docker%E5%B9%B6%E5%B0%86windows%E6%96%87%E4%BB%B6%E5%A4%B9%E6%8C%82%E8%BD%BD%E5%88%B0Docker%E5%92%8Clinux%E4%B8%8A/"/>
+      <url>/2018/11/15/Win10%E4%B8%8B%E5%AE%89%E8%A3%85Docker%E5%B9%B6%E5%B0%86windows%E6%96%87%E4%BB%B6%E5%A4%B9%E6%8C%82%E8%BD%BD%E5%88%B0Docker%E5%92%8Clinux%E4%B8%8A/</url>
+      
+        <content type="html"><![CDATA[<p>&ensp;&ensp;&ensp;&ensp;Docker 是一个开源的应用容器引擎，基于 Go 语言 并遵从Apache2.0协议开源。<br>Docker 可以让开发者打包他们的应用以及依赖包到一个轻量级、可移植的容器中，然后发布到任何流行的 Linux 机器上，也可以实现虚拟化。<br>容器是完全使用沙箱机制，相互之间不会有任何接口（类似 iPhone 的 app）,更重要的是容器性能开销极低。<br><strong>下面是我从零了解Docker的过程：</strong></p><h2 id="下载安装："><a href="#下载安装：" class="headerlink" title="下载安装："></a>下载安装：</h2><h4 id="Windows下载Docker-toolbox网址"><a href="#Windows下载Docker-toolbox网址" class="headerlink" title="Windows下载Docker-toolbox网址"></a>Windows下载Docker-toolbox网址</h4><blockquote><p><a href="http://mirrors.aliyun.com/docker-toolbox/windows/docker-toolbox/" target="_blank" rel="noopener">http://mirrors.aliyun.com/docker-toolbox/windows/docker-toolbox/</a></p></blockquote><h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><blockquote><p>运行 DockerToolbox-18.03.0-ce.exe 进行安装，除了更改安装位置外，其他默认，Docker会自动安装VirtualBox和Kitematic。<br>默认情况下启动Docker，Docker会将镜像文件存储在C盘，因此需要设置镜像文件存储路径：开始-&gt;git bash-&gt;输入：notepad .bash_profile 创建并打开.bash_profile 配置文件-&gt;空白处写：<br>export MACHINE_STORAGE_PATH=’E:\soft\docker’<br>-&gt;保存退出 -&gt;在E:\soft\docker下创建cache文件夹，将安装目录下的boot2docker.iso拷贝到该文件夹</p></blockquote><h4 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h4><blockquote><p>在桌面上单机DockerQuickStart，创建虚拟机并将镜像源改为国内服务器，这边改成了阿里云，具体操作是执行如下命令：<br>docker-machine -s “E:\soft\docker” create –engine-registry-mirror=<a href="https://vf29u5xi.mirror.aliyuncs.com" target="_blank" rel="noopener">https://vf29u5xi.mirror.aliyuncs.com</a> -d virtualbox default<br>最后的default是Docker容器的名称，可以修改。</p></blockquote><p><strong>启动后，你会看到该docker的ip，可以以使用xshell等工具进行连接，用户名是docker,密码是tcuser</strong></p><h4 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h4><p><strong>1、下载Linux镜像</strong></p><blockquote><p><strong>执行命令： docker pull centos 下载Linux镜像</strong><br><strong>完成后 执行 docker  images  查看镜像的信息</strong><br><strong>安装镜像   docker run -d -i -t imageID /bin/bash</strong><br><strong>安装完成后 执行 docker ps  查看 安装的镜像，如有 镜像的信息 即代表 安装成功</strong><br><strong>进入 Linux 执行 docker attach  CONTAINER ID 即可</strong></p></blockquote><p><strong>2、玩转linux</strong></p><blockquote><p>yum下载vim、gcc、wget等<br><strong>然后你会发现一个非常蛋疼的事情：</strong><br><strong>你没办法讲文件从windows环境传到linux系统文件中！！！</strong><br>解决办法：接着查资料吧<br><strong>解决步骤：</strong><br><a href="https://blog.csdn.net/u014149394/article/details/79162283" target="_blank" rel="noopener">https://blog.csdn.net/u014149394/article/details/79162283</a><br>1、进入virtualBox-&gt;设置-&gt;共享文件夹配置windows环境下共享的文件夹，取消自动挂载<br>2、将这个文件先挂载到docker<br>进入dockerquickstart，然后执行 docker-machine ssh default进入到default容器<br>切换到root用户（sudo -i），创建一个文件夹用于挂载位置<br>执行：sudo mount -t vboxsf docker /mnt/docker   (docker就是配置virtralbox共享文件夹时的文件名，/mnt/docker是docker的被挂载位置，提前要创建)<br>exit退出<br>执行：docker run –name centos_vim_gcc_jdk_wget -it  -d -v /mnt/docker_share:/share centos_vim_gcc_jdk_wget<br>3、over</p></blockquote>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Docker </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>hive执行sql报错:incorrect data check 原因及解决办法</title>
       <link href="/2018/10/16/hive%E6%89%A7%E8%A1%8Csql%E6%8A%A5%E9%94%99%E2%80%94%E2%80%94incorrect-data-check-%E5%8E%9F%E5%9B%A0%E5%8F%8A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/"/>
       <url>/2018/10/16/hive%E6%89%A7%E8%A1%8Csql%E6%8A%A5%E9%94%99%E2%80%94%E2%80%94incorrect-data-check-%E5%8E%9F%E5%9B%A0%E5%8F%8A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</url>
